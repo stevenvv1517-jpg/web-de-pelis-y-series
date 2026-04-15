@@ -486,14 +486,104 @@ footer {
         padding: 30px;
     }
     .hero-content h1 {
-        font-size: 40px;
+        font-size: 26px;
     }
-    .navbar {
+    .hero-content p {
+        font-size: 14px;
+    }
+    .hero-buttons {
         flex-direction: column;
-        padding: 15px;
+        gap: 10px;
+    }
+    .hero {
+        min-height: 280px;
+        padding: 60px 20px 40px;
+    }
+
+    /* Navbar móvil */
+    .navbar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 10px 15px;
+        gap: 10px;
     }
     .nav-links {
-        margin-top: 15px;
+        width: 100%;
+        margin-top: 5px;
+        gap: 10px;
+        flex-wrap: wrap;
+        font-size: 13px;
+    }
+    .search-container {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .search-results-dropdown {
+        width: 100%;
+        right: auto;
+        left: 0;
+    }
+
+    /* Cards y grids móvil */
+    .catalog-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        overflow-x: unset;
+        padding-bottom: 0;
+    }
+    .card {
+        min-width: unset;
+        width: 100%;
+    }
+    .card-image {
+        height: 200px;
+    }
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    /* Secciones de contenido */
+    .content-section {
+        padding: 20px 15px;
+    }
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    /* Botón favorito más grande en móvil */
+    .fav-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    /* Tendencias */
+    .trends-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Feedback / Buzón */
+    .feedback-card {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .hero-content h1 {
+        font-size: 22px;
     }
 }
 
