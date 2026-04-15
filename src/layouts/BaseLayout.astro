@@ -19,19 +19,19 @@ import '../styles/style.css';
     <header class="navbar">
         <div class="logo" style="display:flex; align-items:center;">
             <a href="/">
-                <img src="/images/nexus_stream_logo.png" alt="Nexus Stream Logo" style="height: 50px; border-radius: 8px; cursor: pointer;" />
+                <img src="/images/nexus_stream_logo.png" alt="Nexus Stream Logo" style="height: 40px; border-radius: 8px; cursor: pointer;" />
             </a>
         </div>
-        <nav class="nav-links" style="display:flex; align-items:center;">
-            <a href="/" class={activePage === 'inicio' ? 'active' : ''}>Inicio/Series</a>
+        <nav class="nav-links" style="display:flex; align-items:center; gap: 15px;">
+            <a href="/" class={activePage === 'inicio' ? 'active' : ''}>Inicio</a>
             <a href="/peliculas" class={activePage === 'peliculas' ? 'active' : ''}>Películas</a>
             <a href="/#buzon">Buzón</a>
-            <div class="search-container" style="position: relative;">
-                <input id="global-search-input" type="text" placeholder="Buscar..." style="background:transparent; border:none; color:white; outline:none; padding:5px; width:150px;" />
-                <button style="background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-size:16px;">🔍</button>
-                <div id="search-results-dropdown" class="search-results-dropdown"></div>
-            </div>
         </nav>
+        <div class="search-container" style="position: relative;">
+            <input id="search-input" type="text" placeholder="Buscar..." style="background:transparent; border:none; color:white; outline:none; padding:5px; width:120px;" />
+            <button style="background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-size:16px;">🔍</button>
+            <div id="search-results" class="search-results-dropdown"></div>
+        </div>
     </header>
 
     <main>

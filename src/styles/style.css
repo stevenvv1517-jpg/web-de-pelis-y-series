@@ -503,26 +503,36 @@ footer {
     /* Navbar móvil */
     .navbar {
         flex-direction: row;
-        flex-wrap: wrap;
-        padding: 10px 15px;
-        gap: 10px;
+        flex-wrap: nowrap;
+        padding: 8px 12px;
+        gap: 8px;
+        justify-content: space-between;
+        align-items: center;
     }
     .nav-links {
-        width: 100%;
-        margin-top: 5px;
-        gap: 10px;
-        flex-wrap: wrap;
-        font-size: 13px;
+        width: auto;
+        margin-top: 0;
+        gap: 8px;
+        flex-wrap: nowrap;
+        font-size: 12px;
+    }
+    .nav-links a {
+        margin-left: 0;
     }
     .search-container {
-        width: 100%;
+        width: auto;
         margin-left: 0;
-        margin-top: 5px;
+        margin-top: 0;
+        padding: 4px 10px;
+    }
+    .search-container input {
+        width: 80px;
+        font-size: 12px;
     }
     .search-results-dropdown {
-        width: 100%;
-        right: auto;
-        left: 0;
+        width: 280px;
+        right: 0;
+        left: auto;
     }
 
     /* Cards y grids móvil */
