@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "Shintaro", driveId: "1fh1sFmVMcSNjCho4UsTGP1KMddx0ptpJ", desc: "Los Ninja son invitados al hermoso Reino de Shintaro, pero algo oscuro se oculta bajo la ciudad." },
+    { num: 2, title: "En la Oscuridad", driveId: "1wqwbffLfvwudn5CCcW3rNkn-smEveAiS", desc: "Cole descubre una red de túneles secretos y encuentra a una raza de criaturas esclavizadas." },
+    { num: 3, title: "El Peor Rescate de la Historia", driveId: "1IaFJpZP4COvkDXPUp2kHUP3BAcNt-p7Z", desc: "El intento de rescate de Cole no sale según lo planeado y termina capturado." },
+    { num: 4, title: "Las Hojas de Marfil", driveId: "1osjrZRQLLIXQO7XVuHWGu5K_C7O1wc0b", desc: "Los Ninja luchan por recuperar las poderosas Espadas de Marfil." },
+    { num: 5, title: "Reina de los Munce", driveId: "178M--ODMQt5J4JnIR0TEPlizHPEtELIv", desc: "Nya debe ganarse el respeto de la tribu Munce en un duelo de fuerza." },
+    { num: 6, title: "Pruebas de Geckle", driveId: "1X5bhGw5BJ6EjnFoXPQELBrBgpt0d3JYv", desc: "Los Ninja intentan mediar en el conflicto ancestral entre Munces y Geckles." },
+    { num: 7, title: "El Hechicero Calavera", driveId: "1XRuqgV06KLW9XC4F2QqLqK9bfrpCXGEf", desc: "Se revela la identidad del villano que gobierna las minas con puño de hierro." },
+    { num: 8, title: "La Caída Real", driveId: "10Zl4pxOVtkJK-P-1SAGoATv_xScX67z5", desc: "La traición en la corte real de Shintaro deja a los Ninja en una situación desesperada." },
+    { num: 9, title: "Piedra y Fuego", driveId: "1Xis_VAu-X8SvanNpnLFdzXRzNBTg77eW", desc: "Kai y Zane exploran las profundidades volcánicas de la montaña." },
+    { num: 10, title: "El Callejón del Terror", driveId: "1N1HY78DOU7zzFMRefsunM2AIUe4J_hMo", desc: "Lloyd y la Princesa Vania deben atravesar un pasadizo lleno de peligros." },
+    { num: 11, title: "El Dungeon Crawl", driveId: "1bwHGzluVCji78hOpOc8WAiIXZKigAkzQ", desc: "Los Ninja deben avanzar sala por sala a través de la mazmorra del Hechicero." },
+    { num: 12, title: "Grief-Bringer", driveId: "1NPN2aT6dVS4NvKzsKHxojW4caV6zoRfP", desc: "El Hechicero Calavera resucita a un dragón legendario para destruir a los Ninja." },
+    { num: 13, title: "Maestros Nunca Se Rinden", driveId: "1hgVU28I7qn80JWsnqXgLg8gW-1isqxc2", desc: "El Maestro Wu recuerda una lección importante del pasado para inspirar al equipo." },
+    { num: 14, title: "El Grito de la Montaña", driveId: "1wq4vkyZr0KEyYUJ-468mOml7IkxNhOQE", desc: "Cole intenta desbloquear el Burst de la Tierra en un momento crítico." },
+    { num: 15, title: "Un Grupo de Valientes", driveId: "184S65JlbfUoNbdlOtODLbmTKp7-TdBMk", desc: "Los Munce y Geckles se unen finalmente para la gran batalla final." },
+    { num: 16, title: "El Burst de la Tierra", driveId: "1Le9fKUjdkW8zmKmOA0xvc1UcYY1FX_fS", desc: "Cole libera todo su potencial para derrotar al Hechicero Calavera y salvar Shintaro." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 13: Maestro de la Montaña | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp13.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #e67e22; color: white;">Temporada 13</span>
+            <h1>El Maestro de la Montaña</h1>
+            <p>Viaja a las profundidades del Reino de Shintaro. Cole debe enfrentar su pasado y descubrir el secreto del estallido de la tierra para liberar a los pueblos oprimidos del Hechicero Calavera.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas Inteligentes -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 style="color: #e67e22;"><i class="fa fa-mountain"></i> Crónicas de Shintaro (16)</h2>
+        </div>
+
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp13.jpg');`}>
+                        <div class="ep-overlay" style="background: rgba(230, 126, 34, 0.2);">
+                            <span class="ep-badge" style="background: #e67e22;">CAP {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #e67e22; padding-left: 15px;">Explorando la Mazmorra...</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #e67e22;"></i>
+                    <p>El Estallido de la Tierra está cerca</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #e67e22; color: white;"><i class="fa fa-download"></i> Descargar Episodio</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `REPRODUCIENDO: Ep ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+        .episode-card:hover { border-color: #e67e22; transform: translateY(-5px); }
+        .ep-thumbnail { height: 160px; background-size: cover; background-position: center; position: relative; }
+        .ep-overlay { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+        .ep-badge { position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 11px; }
+        .ep-details { padding: 15px; }
+        .ep-details h4 { font-size: 15px; margin-bottom: 5px; color: white; }
+        .ep-details p { font-size: 12px; color: var(--text-secondary); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</BaseLayout>

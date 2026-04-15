@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Super Mario Bros. La película (2023) | Nexus Stream" activePage="peliculas">
+    <style>
+        .infor {
+            background: rgba(20, 20, 25, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        .entrada { display: flex; gap: 30px; margin-bottom: 30px; }
+        .poster img { width: 230px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .detall { flex: 1; }
+        .bs-title { font-size: 32px; margin-bottom: 15px; color: var(--accent); }
+        .Eti, .genero, .califica { list-style: none; padding: 0; display: flex; gap: 15px; margin-bottom: 15px; font-size: 14px; color: var(--text-secondary); }
+        .Eti li.pel { background: var(--accent); color: white; padding: 2px 10px; border-radius: 5px; font-size: 12px; }
+        .porcentajes { display: flex; align-items: center; gap: 10px; color: #4CAF50; font-weight: bold; }
+        .sinopsis { line-height: 1.6; color: var(--text-primary); }
+        
+        .botones { list-style: none; padding: 0; display: flex; gap: 15px; margin-top: 25px; }
+        .botones a { 
+            text-decoration: none; background: rgba(255,255,255,0.05); color: white; 
+            padding: 12px 25px; border-radius: 12px; display: flex; align-items: center; gap: 10px;
+            transition: 0.3s; border: 1px solid var(--glass-border);
+        }
+        .botones a:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* Reproductor */
+        #repro { margin-top: 40px; }
+        .repro-opciones { display: flex; gap: 10px; margin-bottom: 15px; }
+        .repro-opciones a { 
+            background: var(--bg-card); color: white; padding: 10px 20px; border-radius: 10px; 
+            text-decoration: none; border: 1px solid var(--glass-border); transition: 0.3s;
+            font-size: 14px;
+        }
+        .repro-opciones a.active { background: var(--accent); border-color: var(--accent); }
+        .player-wrapper { 
+            aspect-ratio: 16/9; width: 100%; background: #000; border: 1px solid var(--glass-border); 
+            border-radius: 15px; overflow: hidden; 
+        }
+
+        @media (max-width: 768px) {
+            .entrada { flex-direction: column; align-items: center; text-align: center; }
+            .botones { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+
+    <!-- Fondo Hero Dinámico -->
+    <div class="hero-bg" style="position: absolute; top:0; left:0; width:100%; height:500px; background: linear-gradient(to bottom, rgba(10,10,15,0) 0%, rgba(10,10,15,1) 100%), url('https://image.tmdb.org/t/p/original/9n2tJBplPbgR2ca05hS5CKXwP2c.jpg') center/cover; z-index: -1;"></div>
+
+    <div class="infor">
+        <div class="entrada">
+            <div class="poster">
+                <img src="https://image.tmdb.org/t/p/w300//zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg" alt="Poster Mario Bros"/>
+            </div>
+            <div class="detall">
+                <h1 class="bs-title">Super Mario Bros. La película</h1>
+                <ul class="Eti">
+                    <li class="pel">Película</li>
+                    <li>1h 32m</li>
+                    <li>2023</li>
+                </ul>
+                <ul class="genero">Familia, Comedia, Aventura</ul>
+                <div class="califica">
+                    <div class='porcentajes'>
+                        <i class="fa fa-star"></i>
+                        <span>83.8%</span>
+                    </div>
+                    <span>(10,471 votos)</span>
+                </div>
+                <p class="sinopsis">Mientras trabaja bajo tierra para arreglar una tubería de agua, los plomeros de Brooklyn Mario y su hermano Luigi son transportados por una misteriosa tubería y llegan a un nuevo mundo mágico.</p>
+                
+                <ul class="botones">
+                    <li><a href="https://youtu.be/DmCZoiCp5C0?si=RnH7o3g7gRvmobwt" target="_blank"><i class="fa fa-youtube-play"></i> Ver Tráiler</a></li>
+                    <li><a href="#repro"><i class="fa fa-play"></i> Reproducir</a></li>
+                    <li><a href="https://drive.google.com/file/d/1U5WGw2IaRAUvqK9NwNQ7UO_kB7jkzVyK/view?usp=sharing" target="_blank"><i class="fa fa-download"></i> Descargar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="repro">
+            <div class="player-wrapper">
+                <iframe id="main-iframe" src="https://drive.google.com/file/d/1U5WGw2IaRAUvqK9NwNQ7UO_kB7jkzVyK/preview" 
+                    style="width: 100%; height: 100%; border: 0;" 
+                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Tabla de Descargas -->
+        <div class="opciones-descarga" style="margin-top: 50px;">
+            <div class="titulo"> <i class="fa fa-download"></i><span> Descargas</span></div>
+            <table>
+                <thead>
+                    <tr><th scope="col">#</th><th>SERVIDOR</th><th>IDIOMA</th><th>DESCARGAR</th></tr>
+                </thead>
+                <tbody>
+                    <tr><th>1</th><td>Terabox (HD)</td><td>Latino</td><td><a href="https://1024terabox.com/s/1CScm3MlP8fpBnYzfBVPaYA" class="link" target="_blank">Descargar / Ver</a></td></tr>
+                    <tr><th>2</th><td>Mega</td><td>Subtitulado</td><td><a href="#" class="link">Próximamente</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script is:inline>
+        // No se requiere lógica de cambio de servidor por ahora
+    </script>
+</BaseLayout>

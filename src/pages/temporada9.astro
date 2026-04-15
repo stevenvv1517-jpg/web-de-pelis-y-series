@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Ninjago Temporada 9: Cacería | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('https://image.tmdb.org/t/p/original/m9Yy8i7Z61O9I3uGkR3A1nB8F5w.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #e74c3c; color: white;">Temporada 9</span>
+            <h1>Cacería (Hunted)</h1>
+            <p>Mientras Lloyd y Nya lideran la resistencia en Ninjago City, los otros Ninja se encuentran perdidos en el Reino de los Dragones y Oni. Deben sobrevivir a los Cazadores de Dragones y encontrar la legendaria armadura del Primer Maestro para regresar a casa.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Episodios (10)</h2>
+        </div>
+
+        <div class="episodes-container" style="display: grid; gap: 15px;">
+            <div class="episode-row" onclick="updatePlayer('1', 'Primer Caballero', '1F5lJ7i9eWJjDEgXU3GDrAzw7LqdcopVF')">
+                <div class="ep-num">1</div>
+                <div class="ep-info">
+                    <h4>Primer Caballero</h4>
+                    <p>Mientras Lloyd y Nya resisten en Ninjago, los otros Ninja se encuentran perdidos en el Reino de los Dragones y Oni.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('2', 'El Hierro y la Piedra', '1jPhVZZ9kbJsS4ukg_ijisO0pBB78Ajow')">
+                <div class="ep-num">2</div>
+                <div class="ep-info">
+                    <h4>El Hierro y la Piedra</h4>
+                    <p>Los Ninja son capturados por los Cazadores de Dragones y obligados a sobrevivir en un entorno hostil.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('3', 'Radio Libre Ninjago', '1yF2uEuai8xIvEE7Bwr_HMPLYYq6pNrCE')">
+                <div class="ep-num">3</div>
+                <div class="ep-info">
+                    <h4>Radio Libre Ninjago</h4>
+                    <p>Lloyd intenta enviar un mensaje de esperanza a la población mientras huye de los Hijos de Garmadon.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('4', 'Cómo construir un Dragón', '1cvrVvwIXZK5db68Lnu15dd02czqvn9PE')">
+                <div class="ep-num">4</div>
+                <div class="ep-info">
+                    <h4>Cómo construir un Dragón</h4>
+                    <p>Los Ninja ayudan a un joven dragón mientras buscan una forma de regresar a casa y derrotar a los cazadores.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('5', 'El Camino Dorado', '1z5CLfRbEfnP2033IsiSlUgpP5AlhMxLn')">
+                <div class="ep-num">5</div>
+                <div class="ep-info">
+                    <h4>El Camino Dorado</h4>
+                    <p>Lloyd y su equipo de resistencia planean un ataque contra el Coloso de Garmadon para debilitar su control.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('6', 'Dos mentiras, una verdad', '1xlt7BG5PnPz_xlhgUI3qa-q41GcPPDEY')">
+                <div class="ep-num">6</div>
+                <div class="ep-info">
+                    <h4>Dos mentiras, una verdad</h4>
+                    <p>Mystake revela su verdadera naturaleza mientras ayuda a Lloyd a infiltrarse en la base enemiga.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('7', 'La lección más humilde', '1Rr-gw-wmqGeAyYliSp3Dh7G-PqRYhUbh')">
+                <div class="ep-num">7</div>
+                <div class="ep-info">
+                    <h4>La lección más humilde</h4>
+                    <p>Wu comienza a recuperar su memoria y sus habilidades mientras lidera a los Ninja en el Reino de los Dragones.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('8', 'Fe', '10CeB7n36GNditcMT61u8FRm6ia8HMXiq')">
+                <div class="ep-num">8</div>
+                <div class="ep-info">
+                    <h4>Fe</h4>
+                    <p>Los Ninja deben confiar en una nueva aliada, Faith, para encontrar la armadura del Primer Maestro.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('9', 'Lecciones para un Maestro', '1r9ngoLO9YUGfEDcmKmvGLaruiIfNt3JC')">
+                <div class="ep-num">9</div>
+                <div class="ep-info">
+                    <h4>Lecciones para un Maestro</h4>
+                    <p>Wu se enfrenta a Iron Baron en una batalla por el control del poderoso dragón Firstbourne.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('10', 'Green Destiny', '1eZMW0Q2yCxEV9fCt_2juIzU_sooQM5cF')">
+                <div class="ep-num">10</div>
+                <div class="ep-info">
+                    <h4>Green Destiny</h4>
+                    <p>Los Ninja regresan a casa para la batalla final. Lloyd debe recuperar su poder para derrotar a su padre.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #e74c3c; padding-left: 15px;">Selecciona un episodio</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #e74c3c;"></i>
+                    <p>Listo para reproducir</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #e74c3c; color: white;"><i class="fa fa-download"></i> Descargar Episodio</a>
+                <button onclick="window.location.reload()" class="btn-secondary">Siguiente Capítulo <i class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline>
+        window.updatePlayer = function(num, title, driveId) {
+            document.getElementById('player-title').innerText = `Reproduciendo: Ep ${num} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            if (window.markAsViewed) window.markAsViewed(`ninjago-t9-ep${num}`);
+            
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-row {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            padding: 15px 25px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .episode-row:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: #e74c3c;
+            transform: translateX(10px);
+        }
+        .ep-num {
+            font-size: 24px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.1);
+            min-width: 40px;
+        }
+        .ep-info h4 { font-size: 16px; margin-bottom: 4px; }
+        .ep-info p { font-size: 13px; color: var(--text-secondary); }
+        .play-small {
+            background: #e74c3c;
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-left: auto;
+            cursor: pointer;
+        }
+    </style>
+</BaseLayout>

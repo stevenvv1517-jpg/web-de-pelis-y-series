@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout activePage="inicio">
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <span class="badge">Última Noticia</span>
+            <h1>Todo sobre El Despertar de los Elementos</h1>
+            <p>Descubre los secretos ocultos, análisis profundo de la trama y qué podemos esperar de la próxima temporada. Sinopsis, reparto oficial y teorías elaboradas por nuestra comunidad.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">📰 Leer Análisis Completo</button>
+                <button class="btn-secondary">▶ Ver Tráiler Oficial</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER DE ADSTERRA (Horizontal/Popunder) -->
+    <div style="text-align: center; margin: 20px 0; background: var(--glass-bg); border: 1px dashed var(--accent); padding: 20px;">
+        <p style="color: var(--text-secondary); margin-bottom: 10px;">[ Espacio para código de Adsterra ]</p>
+        <!-- Pega aquí el script o código del formato que generes en Adsterra -->
+    </div>
+
+    <!-- SECCIÓN: Continuar Viendo (Dinámico) -->
+    <section class="content-section" id="continue-watching-section" style="display: none; padding-bottom: 20px;">
+        <div class="section-header">
+            <h2><i class="fa fa-history"></i> Continuar viendo</h2>
+        </div>
+        <div id="continue-watching-container" class="grid-container horizontal-grid">
+            <!-- Se llena con JS -->
+        </div>
+    </section>
+
+    <!-- SECCIÓN: MI LISTA (Favoritos) -->
+    <section class="content-section" id="mi-lista" style="display: none; margin-bottom: 40px;">
+        <div class="section-header">
+            <h2 style="color: var(--accent);"><i class="fa fa-heart"></i> Mi Lista</h2>
+        </div>
+        <div id="favorites-grid" class="grid-container">
+            <!-- Se llena con JS -->
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Películas Destacadas -->
+    <section class="content-section" id="peliculas">
+        <div class="section-header">
+            <h2><i class="fa fa-fire"></i> Películas Destacadas</h2>
+            <a href="/peliculas" class="view-all">Ver todas</a>
+        </div>
+        <div class="catalog-row">
+            <!-- Card Batman -->
+            <div class="card" onclick="window.location.href='/batman-caballero-noche-2008'">
+                <div class="fav-btn" data-id="pelicula-batman-2008" data-title="Batman" data-img="/images/batman_poster.jpg" data-url="/batman-caballero-noche-2008"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('/images/batman_poster.jpg');">
+                    <div class="overlay"><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info">
+                    <h3>Batman: El Caballero de la Noche</h3>
+                    <p>2008 • Acción</p>
+                </div>
+            </div>
+
+            <!-- Card Avengers (Próximamente) -->
+            <div class="card disabled" style="opacity: 0.6; cursor: not-allowed; filter: grayscale(0.5);">
+                <div class="fav-btn" data-id="pelicula-avengers-2019" data-title="Avengers: Endgame" data-img="https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg" data-url="#"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg'); background-size: cover; background-position: center;">
+                    <div class="overlay" style="background: rgba(0,0,0,0.4);"><span class="badge" style="background: #6c757d; color: white;">PROXIMAMENTE</span></div>
+                </div>
+                <div class="card-info">
+                    <h3>Avengers: Endgame</h3>
+                    <p>2019 • Acción</p>
+                </div>
+            </div>
+
+            <!-- Card Spiderman -->
+            <div class="card" onclick="window.location.href='/el-hombre-arana-2002'">
+                <div class="fav-btn" data-id="pelicula-spiderman-2002" data-title="El Hombre Araña" data-img="https://image.tmdb.org/t/p/w500/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg" data-url="/el-hombre-arana-2002"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg'); background-size: cover; background-position: center top;">
+                    <div class="overlay"><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info">
+                    <h3>El Hombre Araña</h3>
+                    <p>2002 • Acción</p>
+                </div>
+            </div>
+
+            <!-- Card Rápido y Furioso -->
+            <div class="card" onclick="window.location.href='/rapido-y-furioso-2001'">
+                <div class="fav-btn" data-id="pelicula-rapido-2001" data-title="Rápido y Furioso" data-img="https://image.tmdb.org/t/p/w500/zFR949B0hxdgi0vljf8tCJiZ65z.jpg" data-url="/rapido-y-furioso-2001"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/zFR949B0hxdgi0vljf8tCJiZ65z.jpg'); background-size: cover; background-position: center;">
+                    <div class="overlay"><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info">
+                    <h3>Rápido y Furioso</h3>
+                    <p>2001 • Acción</p>
+                </div>
+            </div>
+
+            <div class="card" onclick="window.location.href='/ninjago-movie-2017'">
+                <div class="fav-btn" data-id="ninjago-movie-2017" data-title="LEGO Ninjago: La película" data-img="/images/ninjago_movie_poster.png" data-url="/ninjago-movie-2017"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('/images/ninjago_movie_poster.png'); background-size: cover; background-position: center;">
+                    <div class="overlay">
+                        <span class="rating" style="position: absolute; top: 10px; left: 10px; color: #ffc107;"><i class="fa fa-star"></i> 6.5</span>
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>LEGO Ninjago: La película</h3>
+                    <p>2017 • Animación</p>
+                </div>
+            </div>
+
+            <!-- Card Mario Bros -->
+            <div class="card" onclick="window.location.href='/mario-bros-2023'">
+                <div class="fav-btn" data-id="pelicula-mario-2023" data-title="Super Mario Bros. La película" data-img="https://image.tmdb.org/t/p/w300//zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg" data-url="/mario-bros-2023"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w300//zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg'); background-size: cover; background-position: center;">
+                    <div class="overlay"><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info">
+                    <h3>Super Mario Bros. La película</h3>
+                    <p>2023 • Familia, Comedia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Series Recomendadas -->
+    <section class="content-section" id="series">
+        <div class="section-header">
+            <h2><i class="fa fa-tv"></i> Series Recomendadas</h2>
+            <a href="/ninjago" class="view-all">Ver todas</a>
+        </div>
+        <div class="catalog-row">
+            <!-- Card Malcolm -->
+            <div class="card" onclick="window.location.href='/malcolm-2026'">
+                <div class="fav-btn" data-id="serie-malcolm-2026" data-title="Malcolm" data-img="/images/malcolm_poster.jpg" data-url="/malcolm-2026"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('/images/malcolm_poster.jpg'); border-radius: 12px;">
+                    <div class="overlay"><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info">
+                    <h3>Malcolm in the Middle</h3>
+                    <p>2026 • Comedia</p>
+                </div>
+            </div>
+
+
+            <!-- Card Serie Ninjago -->
+            <div class="card" onclick="window.location.href='/ninjago'">
+                <div class="fav-btn" data-id="serie-ninjago-masters" data-title="Lego Ninjago Masters of Spinjitzu" data-img="/images/ninjago_main.jpg" data-url="/ninjago"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('/images/ninjago_main.jpg'); background-size: cover; background-position: center;">
+                    <div class="overlay"><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info">
+                    <h3>Lego Ninjago Masters of Spinjitzu</h3>
+                    <p>Animación • Aventura</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: Tendencias -->
+    <section class="content-section" id="tendencias" style="margin-top: 10px;">
+        <div class="section-header">
+            <h2><i class="fa fa-line-chart"></i> Tendencias esta semana</h2>
+        </div>
+
+        <style>
+            .trends-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 15px; margin-top: 20px; }
+            .trend-card { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 12px; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+            .trend-card:hover { transform: translateX(6px); border-color: var(--accent); background: rgba(30,144,255,0.05); }
+            .trend-num { font-size: 40px; font-weight: 900; color: rgba(255,255,255,0.07); line-height: 1; min-width: 45px; text-align: center; }
+            .trend-img { width: 55px; height: 80px; border-radius: 10px; background-size: cover; background-position: center; flex-shrink: 0; }
+            .trend-info { flex: 1; min-width: 0; }
+            .trend-info h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .trend-info p { font-size: 11px; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+            .trend-bar-bg { height: 4px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; }
+            .trend-bar-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent), #00d2ff); }
+            .trend-score { font-size: 13px; font-weight: 700; color: #ffc107; min-width: 40px; text-align: right; flex-shrink: 0; }
+        </style>
+
+        <div class="trends-grid">
+            <div class="trend-card" onclick="window.location.href='/avengers-endgame-2019'">
+                <div class="trend-num">1</div>
+                <div class="trend-img" style="background-image: url('https://image.tmdb.org/t/p/w500/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg');"></div>
+                <div class="trend-info"><h4>Avengers: Endgame</h4><p>Acción • Sci-Fi • 2019</p><div class="trend-bar-bg"><div class="trend-bar-fill" style="width:98%"></div></div></div>
+                <div class="trend-score">⭐ 8.4</div>
+            </div>
+            <div class="trend-card" onclick="window.location.href='/batman-caballero-noche-2008'">
+                <div class="trend-num">2</div>
+                <div class="trend-img" style="background-image: url('/images/batman_poster.jpg');"></div>
+                <div class="trend-info"><h4>Batman: El Caballero de la Noche</h4><p>Acción • Crimen • 2008</p><div class="trend-bar-bg"><div class="trend-bar-fill" style="width:94%"></div></div></div>
+                <div class="trend-score">⭐ 9.0</div>
+            </div>
+            <div class="trend-card" onclick="window.location.href='/el-hombre-arana-2002'">
+                <div class="trend-num">3</div>
+                <div class="trend-img" style="background-image: url('https://image.tmdb.org/t/p/w500/gh4cZbhZxyTbgxQPxD0dOudNPTn.jpg');"></div>
+                <div class="trend-info"><h4>El Hombre Araña</h4><p>Acción • Aventura • 2002</p><div class="trend-bar-bg"><div class="trend-bar-fill" style="width:81%"></div></div></div>
+                <div class="trend-score">⭐ 7.3</div>
+            </div>
+            <div class="trend-card" onclick="window.location.href='/ninjago'">
+                <div class="trend-num">4</div>
+                <div class="trend-img" style="background-image: url('/images/ninjago_main.jpg');"></div>
+                <div class="trend-info"><h4>Lego Ninjago Masters of Spinjitzu</h4><p>Animación • Aventura</p><div class="trend-bar-bg"><div class="trend-bar-fill" style="width:76%"></div></div></div>
+                <div class="trend-score">⭐ 7.7</div>
+            </div>
+            <div class="trend-card" onclick="window.location.href='/malcolm-2026'">
+                <div class="trend-num">5</div>
+                <div class="trend-img" style="background-image: url('/images/malcolm_poster.jpg');"></div>
+                <div class="trend-info"><h4>Malcolm in the Middle</h4><p>Comedia • Drama • 2026</p><div class="trend-bar-bg"><div class="trend-bar-fill" style="width:70%"></div></div></div>
+                <div class="trend-score">⭐ 8.4</div>
+            </div>
+            <div class="trend-card" onclick="window.location.href='/mario-bros-2023'">
+                <div class="trend-num">6</div>
+                <div class="trend-img" style="background-image: url('https://image.tmdb.org/t/p/w500/zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg');"></div>
+                <div class="trend-info"><h4>Super Mario Bros. La película</h4><p>Familia • Aventura • 2023</p><div class="trend-bar-bg"><div class="trend-bar-fill" style="width:72%"></div></div></div>
+                <div class="trend-score">⭐ 8.4</div>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline>
+        // Cargar favoritos en la home
+        function renderFavorites() {
+            const favs = JSON.parse(localStorage.getItem('nexus_favs') || '[]');
+            const grid = document.getElementById('favorites-grid');
+            const section = document.getElementById('mi-lista');
+
+            if (favs.length > 0) {
+                section.style.display = 'block';
+                grid.innerHTML = favs.map(f => `
+                    <div class="card" onclick="window.location.href='${f.url}'">
+                        <div class="fav-btn active" data-id="${f.id}" data-title="${f.title}" data-img="${f.img}" data-url="${f.url}"><i class="fa fa-heart"></i></div>
+                        <div class="card-image" style="background-image: url('${f.img}');">
+                            <div class="overlay"><button class="play-btn">▶</button></div>
+                        </div>
+                        <div class="card-info">
+                            <h3>${f.title}</h3>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                section.style.display = 'none';
+            }
+        }
+        
+        // Ejecutar al cargar y cuando se clickea un fav
+        renderFavorites();
+        document.addEventListener('favsUpdated', renderFavorites);
+    </script>
+
+    <!-- BANNER NATIVO/IFRAME ADSTERRA -->
+    <div style="text-align: center; margin: 40px auto; max-width: 728px; background: var(--glass-bg); border: 1px dashed var(--accent); padding: 20px;">
+        <p style="color: var(--text-secondary); margin-bottom: 10px;">[ Espacio para código de Adsterra 728x90 o Native Banner ]</p>
+    </div>
+
+    <section class="monetization-banner" id="noticias">
+        <div class="glass-banner">
+            <div class="banner-text">
+                <h2>Únete a nuestra Newsletter Semanal</h2>
+                <p>Déjanos tu correo y recibe las últimas reseñas, teorías y fechas de estreno antes que nadie.</p>
+            </div>
+            <button class="btn-vip" style="background: linear-gradient(45deg, #1e90ff, #00d2ff);">Suscribirme Gratis</button>
+        </div>
+    </section>
+
+    <!-- Buzón de Sugerencias en Home -->
+    <section class="content-section" id="buzon" style="margin-top: 60px; margin-bottom: 60px;">
+        <div class="section-header">
+            <h2 style="border-left: 4px solid var(--accent); padding-left: 15px;">Buzón de Nexus Stream</h2>
+        </div>
+        <div class="feedback-card" style="background: var(--bg-card); border-radius: 24px; padding: 40px; border: 1px solid var(--glass-border); display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+            <div class="feedback-info">
+                <h3 style="font-size: 28px; margin-bottom: 15px;">¿Quieres alguna película?</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Si no encuentras lo que buscas o has detectado un error en algún reproductor, dánoslo a conocer. Tu feedback nos ayuda a mejorar Nexus Stream.</p>
+                <div style="margin-top: 25px; display: flex; gap: 15px;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: center; flex: 1;">
+                        <i class="fa fa-film" style="color: var(--accent); font-size: 24px; margin-bottom: 10px;"></i>
+                        <p style="font-size: 12px;">Pide tu Peli</p>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: center; flex: 1;">
+                        <i class="fa fa-bug" style="color: #ff2a5f; font-size: 24px; margin-bottom: 10px;"></i>
+                        <p style="font-size: 12px;">Reporta Error</p>
+                    </div>
+                </div>
+            </div>
+            <form class="feedback-form" style="margin-bottom: 0;">
+                <label>Tipo de mensaje</label>
+                <select style="width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; padding: 12px; border-radius: 10px; margin-bottom: 20px;">
+                    <option>Sugerir Película/Serie</option>
+                    <option>Reportar Link Caído</option>
+                    <option>Sugerencia de diseño</option>
+                </select>
+                <textarea placeholder="Escribe aquí los detalles..." style="width: 100%; height: 100px; background: rgba(0,0,0,0.3); border: 1px solid var(--glass-border); color: white; padding: 12px; border-radius: 10px; margin-bottom: 20px; resize: none;"></textarea>
+                <button type="submit" class="btn-primary" style="width: 100%; padding: 15px; border-radius: 10px;">Enviar a Nexus Stream</button>
+            </form>
+        </div>
+    </section>
+</BaseLayout>
+

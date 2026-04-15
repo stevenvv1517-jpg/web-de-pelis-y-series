@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "Vientos de cambio", driveId: "1RYqBDroyyQS9Xl7vGR_ZTmkhuN37s8Xd", desc: "Lloyd es poseído por Morro, quien busca el Cristal del Reino." },
+    { num: 2, title: "Historia fantasmal", driveId: "1KIbPiq-vJcLDRtEj8xu6s48QSmxrHwLj", desc: "Los Ninja huyen de Morro y buscan recuperar sus poderes elementales." },
+    { num: 3, title: "Cualquier cosa con tal de llegar", driveId: "1-SguP3sCAu8xkVbIOm8Rdc7K2xJjhRH_", desc: "El equipo llega a Stiix para recuperar el pergamino de manos de Ronin." },
+    { num: 4, title: "Templo en la colina", driveId: "1hyK24C9ItKGE6E0le0TdzXp-1pb3YXhl", desc: "Los Ninja enfrentan sus miedos en el templo de Sensei Yang." },
+    { num: 5, title: "Cima de la montaña", driveId: "1w9AxCY8R4_BBG-Uvz3xV6rzO0rtII_Ii", desc: "El grupo busca la entrada a la tumba del Primer Maestro." },
+    { num: 6, title: "El laberinto del Maestro", driveId: "1m_aze5ECqlqP8rY7aZS4D9rLAGwPOEFe", desc: "Los Ninja superan acertijos para llegar al Cristal del Reino." },
+    { num: 7, title: "Astucia ninja", driveId: "16AlkunyE640W5Q63pmVvZUvZG3z6KWgR", desc: "Morro obtiene el Cristal y los Ninja intentan recuperarlo." },
+    { num: 8, title: "Grave peligro", driveId: "1V2L_hHp5uhYbD8jldEIAAGVm7EgFTvsN", desc: "Los fantasmas invaden la ciudad mientras los Ninja se defienden." },
+    { num: 9, title: "Mundo maldito (Parte 1)", driveId: "1dQz3Etu-wK7CnfjOCm1akjQP3UJIdVQd", desc: "La batalla por Ninjago comienza en Stiix contra Morro." },
+    { num: 10, title: "Mundo maldito (Parte 2)", driveId: "1dQz3Etu-wK7CnfjOCm1akjQP3UJIdVQd", desc: "Nya desbloquea su potencial de agua para hundir a La Preeminente." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 5: La Posesión | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp5_full.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #a0ffe3; color: black;">Temporada 5</span>
+            <h1>La Posesión (Possession)</h1>
+            <p>Morro, el maestro del viento, posee a Lloyd para encontrar el Cristal del Reino. Los Ninja deben salvar a su amigo y aprender el arte del Airejitzu.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Episodios (10)</h2>
+        </div>
+
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp5_full.jpg');`}>
+                        <div class="ep-overlay">
+                            <span class="ep-badge">CAP {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #a0ffe3; padding-left: 15px;">Selecciona un episodio</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #a0ffe3;"></i>
+                    <p>¡Cuidado con los fantasmas!</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #a0ffe3; color: black;"><i class="fa fa-download"></i> Descargar Episodio</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `Reproduciendo: Ep ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .episode-card:hover {
+            transform: translateY(-5px);
+            border-color: #a0ffe3;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .ep-thumbnail {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .ep-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .episode-card:hover .ep-overlay { opacity: 1; background: rgba(0,0,0,0.2); }
+        .ep-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: #a0ffe3;
+            color: black;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .ep-overlay i { font-size: 40px; color: white; }
+        .ep-details { padding: 15px; }
+        .ep-details h4 { font-size: 15px; margin-bottom: 5px; color: white; }
+        .ep-details p { font-size: 12px; color: var(--text-secondary); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</BaseLayout>

@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "Oscuridad en el horizonte", driveId: "1RST3L-5j8Y6v_e3k8G6Z6Zk9w_P6S3v", desc: "Los Ninja deben proteger la ciudad mientras Lloyd comienza su entrenamiento." },
+    { num: 2, title: "Piratas vs. Ninja", driveId: "1-J_0O8YjV-0U3N7kY6S4t0R5v_P6D3s", desc: "El Capitán Soto y su tripulación pirata regresan a Ninjago." },
+    { num: 3, title: "Doble problema", driveId: "1_O8YjV-0U3N7kY6S4t0R5v_P6S3v", desc: "Garmadon crea clones malvados de los Ninja." },
+    { num: 4, title: "Ninjago a la carrera", driveId: "1-J_0O8YjV-0U3N7kY6S4t0R5v_P6D3s", desc: "Los Ninja compiten en una carrera de obstáculos mortal." },
+    { num: 5, title: "Juego de niños", driveId: "1_O8YjV-0U3N7kY6S4t0R5v_P6S3v", desc: "Un hechizo convierte a los Ninja en niños otra vez." },
+    { num: 6, title: "El lugar equivocado, el momento equivocado", driveId: "1-J_0O8YjV-0U3N7kY6S4t0R5v_P6D3s", desc: "Garmadon viaja al pasado para evitar que los Ninja se unan." },
+    { num: 7, title: "El ejército de piedra", driveId: "1_O8YjV-0U3N7kY6S4t0R5v_P6S3v", desc: "Una antigua fuerza guerrera despierta en el museo." },
+    { num: 8, title: "El día que Ninjago se detuvo", driveId: "1-J_0O8YjV-0U3N7kY6S4t0R5v_P6D3s", desc: "El gran terremoto revela la existencia de la Isla de la Oscuridad." },
+    { num: 9, title: "El último viaje", driveId: "1_O8YjV-0U3N7kY6S4t0R5v_P6S3v", desc: "Los Ninja parten hacia la Isla de la Oscuridad." },
+    { num: 10, title: "La Isla de la Oscuridad", driveId: "1-J_0O8YjV-0U3N7kY6S4t0R5v_P6D3s", desc: "El Overlord comienza su plan final." },
+    { num: 11, title: "El último Potencial", driveId: "1_O8YjV-0U3N7kY6S4t0R5v_P6S3v", desc: "Lloyd se prepara para el enfrentamiento final." },
+    { num: 12, title: "El regreso del Overlord", driveId: "1-J_0O8YjV-0U3N7kY6S4t0R5v_P6D3s", desc: "La batalla definitiva por el destino de Ninjago." },
+    { num: 13, title: "El ascenso del Maestro Dorado", driveId: "1_O8YjV-0U3N7kY6S4t0R5v_P6S3v", desc: "Lloyd alcanza su máximo poder." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 2: El Legado del Ninja Verde | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp2.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #f1c40f; color: black;">Temporada 2</span>
+            <h1>El Legado del Ninja Verde</h1>
+            <p>Lloyd debe entrenar para enfrentarse a su padre, Lord Garmadon, mientras los Ninja buscan las cuatro Armas Elementales en una carrera contra el tiempo.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Episodios (13)</h2>
+        </div>
+
+        <div class="episodes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp2.jpg');`}>
+                        <div class="ep-overlay">
+                            <span class="ep-badge">CAP {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #f1c40f; padding-left: 15px;">Selecciona un episodio</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #f1c40f;"></i>
+                    <p>Listo para el Legado Dorado</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #f1c40f; color: black;"><i class="fa fa-download"></i> Descargar Episodio</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `Reproduciendo: Ep ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .episode-card:hover {
+            transform: translateY(-5px);
+            border-color: #f1c40f;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .ep-thumbnail {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .ep-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .episode-card:hover .ep-overlay { opacity: 1; background: rgba(0,0,0,0.2); }
+        .ep-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: #f1c40f;
+            color: black;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .ep-overlay i { font-size: 40px; color: white; }
+        .ep-details { padding: 15px; }
+        .ep-details h4 { font-size: 15px; margin-bottom: 5px; color: white; }
+        .ep-details p { font-size: 12px; color: var(--text-secondary); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</BaseLayout>

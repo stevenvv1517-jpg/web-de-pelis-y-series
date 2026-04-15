@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Ninjago Especial: El Regreso de los Villanos | Día de los Difuntos" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.2)), url('https://image.tmdb.org/t/p/original/m9Yy8i7Z61O9I3uGkR3A1nB8F5w.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #ffc107; color: #000;">Especial de Ninjago</span>
+            <h1>El Regreso de los Villanos</h1>
+            <p>Durante la festividad del Día de los Difuntos, Cole es engañado por el Sensei Yang. Esto provoca que las estatuas de los villanos más antiguos cobren vida, obligando al equipo a enfrentarse a sus viejos enemigos mientras Cole lucha por volver a ser humano.</p>
+        </div>
+    </section>
+
+    <!-- Sección de Selección -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Reproducción Especial</h2>
+            <p style="color: grey;">Este especial ocurre después de la Temporada 6 y antes de la 7.</p>
+        </div>
+        <div class="grid-container horizontal-grid" style="justify-content: center;">
+            <div class="card active" data-id="ninjago-especial-difuntos" onclick="updatePlayer()" style="max-width: 450px; border: 2px solid #ffc107;">
+                <div class="fav-btn" onclick="event.stopPropagation()" data-id="ninjago-especial-difuntos" data-title="Ninjago Especial: El Regreso de los Villanos" data-img="/images/especial_difuntos.png" data-url="/especial-difuntos"></div>
+                <div class="card-image">
+                    <div style="background-image: url('/images/especial_difuntos.png'); width:100%; height:100%; background-size:cover; background-position: center;"></div>
+                    <div class="overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Ver Especial Completo</h3>
+                    <p>44 min • Día de los Difuntos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #ffc107; padding-left: 15px;">Selecciona el especial arriba</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #ffc107;"></i>
+                    <p>Listo para reproducir</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; gap: 20px;">
+                <a href="https://drive.google.com/file/d/1weMEpjQIZgYcKhpg6O6cGPwk3roXatXP/view?usp=sharing" target="_blank" class="btn-primary" style="background: #ffc107; color: black;"><i class="fa fa-download"></i> Descargar Especial</a>
+                <a href="/temporada7" class="btn-secondary">Siguiente: Temp 7 <i class="fa fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline>
+        window.updatePlayer = function() {
+            const driveId = "1weMEpjQIZgYcKhpg6O6cGPwk3roXatXP";
+            document.getElementById('player-title').innerText = 'Reproduciendo: El Regreso de los Villanos';
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            
+            if (window.markAsViewed) window.markAsViewed("ninjago-especial-difuntos");
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+</BaseLayout>

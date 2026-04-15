@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "Hacia lo Desconocido", driveId: "1nPCTdBQvNbN_hvQqYuBkbLrax3dCfrMC", desc: "Los Ninja viajan a una isla misteriosa para encontrar al Maestro Wu y la expedición perdida de Misako." },
+    { num: 2, title: "Los Guardianes del Amuleto", driveId: "1ws47kMeaq7_H7ZwRSI_Sk8hFB_ebmBeT", desc: "El equipo es capturado por una tribu nativa que adora a una antigua bestia marina llamada Wojira." },
+    { num: 3, title: "El Regalo de Jay", driveId: "1u6PH8V7xJITtszwtn148Mf9nhfqb6qaD", desc: "Jay es elegido como sacrificio para calmar la supuesta ira de la tormenta, pero descubre un engaño." },
+    { num: 4, title: "El Diente de Wojira", driveId: "1Jx1FwwXkcZ8pysSYXLPn9wOcHBSej_HZ", desc: "Los Ninja deben detener a un falso profeta y descubrir el secreto que oculta la tormenta de la isla." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 14: La Isla | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp14.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #a29bfe; color: black; border: none; font-weight: 800;">MINISERIE</span>
+            <h1>La Isla</h1>
+            <p>Una expedición perdida, una tribu misteriosa y la sombra de una antigua deidad marina. Los Ninja deben sobrevivir a los peligros de la selva para rescatar a sus amigos y descubrir la verdad tras el Amuleto de la Tormenta.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas Inteligentes -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 style="color: #a29bfe;"><i class="fa fa-leaf"></i> Expedición Desconocida (4)</h2>
+        </div>
+
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp14.jpg');`}>
+                        <div class="ep-overlay" style="background: rgba(162, 155, 254, 0.2);">
+                            <span class="ep-badge" style="background: #a29bfe; color: #000;">CAP {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #a29bfe; padding-left: 15px;">Explorando la Maleza...</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #a29bfe;"></i>
+                    <p>Wojira está despertando</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #a29bfe; color: black;"><i class="fa fa-download"></i> Descargar Episodio</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `REPRODUCIENDO: Ep ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+        .episode-card:hover { border-color: #a29bfe; transform: translateY(-5px); }
+        .ep-thumbnail { height: 180px; background-size: cover; background-position: center; position: relative; }
+        .ep-overlay { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+        .ep-badge { position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 11px; }
+        .ep-details { padding: 20px; }
+        .ep-details h4 { font-size: 16px; margin-bottom: 8px; color: white; }
+        .ep-details p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    </style>
+</BaseLayout>

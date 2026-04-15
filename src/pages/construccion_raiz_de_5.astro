@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Construcción de Raíz de 5 en GeoGebra" activePage="inicio">
+    <div style="background: white; color: black; padding: 40px; border-radius: 12px; margin: 20px;">
+        <h1>Representación de √5 en la recta numérica</h1>
+        <p>
+            Para representar <b>√5</b> utilizamos el Teorema de Pitágoras: <code>c² = a² + b²</code>.<br>
+            Como <code>(√5)² = 2² + 1²</code> (es decir, 5 = 4 + 1), podemos construir un triángulo rectángulo con:
+        </p>
+        <ul>
+            <li>Un cateto de longitud <b>2</b> sobre el eje x.</li>
+            <li>Un cateto de longitud <b>1</b> paralelo al eje y.</li>
+        </ul>
+        <p>
+            La hipotenusa de este triángulo medirá exactamente √5. Luego, trazando una circunferencia con centro en el origen y radio igual a la hipotenusa, trasladamos esa medida al eje x (la recta numérica).
+        </p>
+        <div id="ggb-element"></div>
+    </div>
+
+    <script is:inline src="https://cdn.geogebra.org/apps/deployggb.js"></script>
+    <script is:inline>
+        var params = {
+            "appName": "classic",
+            "width": 800,
+            "height": 600,
+            "showToolBar": true,
+            "showAlgebraInput": true,
+            "showMenuBar": true,
+            "language": "es",
+            "appletOnLoad": function(api) {
+                // Comandos para armar la geometría automáticamente
+                api.evalCommand("A = (0, 0)");       // Vértice en el origen
+                api.evalCommand("B = (2, 0)");       // Vértice formando cateto de longitud 2
+                api.evalCommand("C = (2, 1)");       // Vértice formando cateto de longitud 1
+                api.evalCommand("t = Polygon(A, B, C)"); // Armar el triángulo rectángulo
+                api.evalCommand("c1 = Circle(A, C)");    // Circunferencia para trasladar medida
+                api.evalCommand("I = Intersect(c1, y=0)"); // Intersección con el eje X (recta numérica)
+            }
+        };
+        var applet = new GGBApplet(params, true);
+        applet.inject('ggb-element');
+    </script>
+</BaseLayout>

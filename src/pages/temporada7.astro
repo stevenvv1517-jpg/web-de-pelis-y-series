@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Temporada 7 | Las Manecillas del Tiempo" activePage="inicio">
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.3)), url('https://image.tmdb.org/t/p/original/m9m5v4YkToM2Aks8G2QxTInlInY.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge">Temporada 7</span>
+            <h1>Las Manecillas del Tiempo (Hands of Time)</h1>
+            <p>Los Gemelos del Tiempo, Acronix y Krux, regresan de su exilio temporal para recolectar las cuatro Espadas del Tiempo y cambiar el destino de Ninjago.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Lista de Episodios (T7)</h2>
+        </div>
+        <div class="episodes-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+            <div class="episode-row" onclick="updatePlayer(0)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 1</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">El Maestro del Tiempo</h3>
+                    <p style="font-size: 13px; color: grey;">Acronix regresa tras 40 años para cumplir su venganza.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(1)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 2</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">El Ascenso de las Vermillion</h3>
+                    <p style="font-size: 13px; color: grey;">Guerreros serpiente atacan robando todo el metal.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(2)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 3</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Una Traición en el Tiempo</h3>
+                    <p style="font-size: 13px; color: grey;">Los Ninja buscan quién fabrica la tecnología enemiga.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(3)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 4</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Carroñeros</h3>
+                    <p style="font-size: 13px; color: grey;">La carrera por la primera Espada del Tiempo en un desguace.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(4)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 5</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Una Línea en la Arena</h3>
+                    <p style="font-size: 13px; color: grey;">Protegiendo la segunda Espada del Tiempo de los Gemelos.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(5)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 6</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">El Ataque</h3>
+                    <p style="font-size: 13px; color: grey;">Los Vermillion lanzan una ofensiva masiva.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(6)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 7</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Secretos Revelados</h3>
+                    <p style="font-size: 13px; color: grey;">Kai y Nya descubren el pasado oculto de sus padres.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(7)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 8</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Pausa y Retroceso</h3>
+                    <p style="font-size: 13px; color: grey;">Los Gemelos construyen su máquina para viajar por el tiempo.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(8)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 9</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Fuera del Fuego...</h3>
+                    <p style="font-size: 13px; color: grey;">Kai y Nya colaboran para viajar al pasado.</p>
+                </div>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer(9)" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden; background: var(--bg-card);">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 180px; width: 100%; position: relative;">
+                    <div class="overlay"><span class="badge" style="position: absolute; top: 10px; left: 10px;">Cap 10</span><button class="play-btn">▶</button></div>
+                </div>
+                <div class="card-info" style="padding: 20px;">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Perdidos en el Tiempo</h3>
+                    <p style="font-size: 13px; color: grey;">La batalla final en el flujo temporal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-episode-title" style="border-left: 4px solid var(--accent); padding-left: 15px;">Selecciona un episodio</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: var(--accent);"></i>
+                    <p>Comienza el maratón de la Temporada 7</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: space-between; align-items: center;">
+                <button id="prev-ep" class="nav-episode-btn" disabled><i class="fa fa-arrow-left"></i> Anterior</button>
+                <a id="btn-descarga-directa" href="#" target="_blank" class="btn-primary" style="display: none;"><i class="fa fa-download"></i> Descargar</a>
+                <button id="next-ep" class="nav-episode-btn" disabled>Siguiente <i class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline>
+        const episodes = [
+            { id: "ninjago-t7-c1", title: "Cap 1: El Maestro del Tiempo", driveId: "1M-Y2M5tIew6agGQououggMGdk5bGzvZh" },
+            { id: "ninjago-t7-c2", title: "Cap 2: El Ascenso de las Vermillion", driveId: "1HREUzNQwfcaXVAB36nrjTaGlU022rMuu" },
+            { id: "ninjago-t7-c3", title: "Cap 3: Una Traición en el Tiempo", driveId: "1U5XVv8ss6nC3Ykqh6nVmIVf7y1lJoJHu" },
+            { id: "ninjago-t7-c4", title: "Cap 4: Carroñeros", driveId: "1tYxHRHmeKqy10oQGtT2e8yuLPf4JiZDU" },
+            { id: "ninjago-t7-c5", title: "Cap 5: Una Línea en la Arena", driveId: "1hJl6354DH_R2RHSAbaO4V62MeFT0ZX8E" },
+            { id: "ninjago-t7-c6", title: "Cap 6: El Ataque", driveId: "1YLTEDbVsqzS47WMcEoi3-ITNBUQdmxNY" },
+            { id: "ninjago-t7-c7", title: "Cap 7: Secretos Revelados", driveId: "1Pdla9-UWde3jncydq-QoakPiGa-To9YB" },
+            { id: "ninjago-t7-c8", title: "Cap 8: Pausa y Retroceso", driveId: "10L5QzuQYcPtzPblzWMpBMq7_TSbvceOm" },
+            { id: "ninjago-t7-c9", title: "Cap 9: Fuera del Fuego y hacia el Hervidero", driveId: "10L5QzuQYcPtzPblzWMpBMq7_TSbvceOm" },
+            { id: "ninjago-t7-c10", title: "Cap 10: Perdidos en el Tiempo", driveId: "10L5QzuQYcPtzPblzWMpBMq7_TSbvceOm" }
+        ];
+
+        let currentEpisodeIndex = -1;
+
+        window.updatePlayer = function(index) {
+            currentEpisodeIndex = index;
+            const ep = episodes[index];
+            document.getElementById('player-episode-title').innerText = 'Reproduciendo: ' + ep.title;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${ep.driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            
+            const dlBtn = document.getElementById('btn-descarga-directa');
+            dlBtn.href = `https://drive.google.com/file/d/${ep.driveId}/view?usp=sharing`;
+            dlBtn.style.display = 'block';
+
+            if (window.markAsViewed) window.markAsViewed(ep.id);
+            document.getElementById('prev-ep').disabled = (index === 0);
+            document.getElementById('next-ep').disabled = (index === episodes.length - 1);
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.getElementById('prev-ep').onclick = () => { if(currentEpisodeIndex > 0) updatePlayer(currentEpisodeIndex - 1); };
+        document.getElementById('next-ep').onclick = () => { if(currentEpisodeIndex < episodes.length - 1) updatePlayer(currentEpisodeIndex + 1); };
+    </script>
+</BaseLayout>

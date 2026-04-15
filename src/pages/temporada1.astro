@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "El ascenso de las serpientes", driveId: "1WDCiq9qwxzLKBR-lrBn7duDuf1HamvMp", desc: "Lloyd Garmadon libera a la tribu Hypnobrai." },
+    { num: 2, title: "Hogar", driveId: "1Cy_Bhqz9Tvt9QHoKYLEbVZz-RLaaTMkr", desc: "Los Hypnobrai atacan la aldea de Jamanakai." },
+    { num: 3, title: "Mordedura de serpiente", driveId: "1ahqYOlqFk1m9GaBAtPNSlOaLyacLcd-E", desc: "Lloyd libera a los Fangpyre." },
+    { num: 4, title: "Jamás confíes en una serpiente", driveId: "1rtN0EN71GyEQ8O3Ar2FlvPMyhIbtplaD", desc: "Pythor traiciona a Lloyd Garmadon." },
+    { num: 5, title: "Lata de gusanos", driveId: "1JKCV_KVuEwmYyKoHr-81wRaKLdMGmFTN", desc: "Pythor intenta liberar a las tribus Constrictai." },
+    { num: 6, title: "El rey serpiente", driveId: "1a4IGZyAu2qbw238WxjEm9iCOuw8xN72m", desc: "Pythor logra unir a las cuatro tribus." },
+    { num: 7, title: "Tick Tock", driveId: "16yslo2nxw1fONlasc0oegAZQU5UVv-n3", desc: "Zane descubre la verdad sobre su origen." },
+    { num: 8, title: "El que es mordido, está en peligro", driveId: "1ciF7abWrwh8PoHdsPMMFNQw9mi2ilsRJ", desc: "Jay desbloquea su Potencial Verdadero." },
+    { num: 9, title: "Los herreros cantantes", driveId: "1pVDD5nYCQLr40saYQII-UvrA2xPSi0-6", desc: "Cole debe enfrentar a su padre." },
+    { num: 10, title: "El ninja verde", driveId: "1UootHj6rZ25_QPP-DNuKYZswztLR6O2o", desc: "Se revela la identidad del Ninja Verde." },
+    { num: 11, title: "El todo de la nada", driveId: "1S53BbVtQ6u8WLv3Kt5vjfpMZRcRPfj84", desc: "Los ninjas intentan infiltrarse en Ouroboros." },
+    { num: 12, title: "El despertar del Gran Devorador", driveId: "1jgczG3V1eoD3g1SYuatxHQUikb8MdRDR", desc: "Pythor despierta a la gigantesca serpiente." },
+    { num: 13, title: "El día del Gran Devorador", driveId: "1AjnR5Oq2HAg8ct2oXurfUFIvh25GeAHV", desc: "La batalla final contra el Devorador." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 1: El Ascenso de las Serpientes | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp1.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #2ecc71; color: white;">Temporada 1</span>
+            <h1>El Ascenso de las Serpientes</h1>
+            <p>Las tribus de serpientes regresan a Ninjago. Los cuatro ninjas deben prepararse para enfrentarlas mientras intentan descifrar la profecía del Ninja Verde.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios Estilo Gamer -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Episodios (13)</h2>
+        </div>
+
+        <div class="episodes-container" style="display: grid; gap: 12px;">
+            {episodes.map((ep) => (
+                <div class="episode-row" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-num">{ep.num}</div>
+                    <div class="ep-info">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                    <button class="play-small">▶</button>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #2ecc71; padding-left: 15px;">Selecciona un episodio</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #2ecc71;"></i>
+                    <p>Listo para el combate</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                <div class="ep-nav">
+                    <button id="prev-btn" class="btn-icon"><i class="fa fa-step-backward"></i></button>
+                    <span id="current-ep-label" style="margin: 0 15px; font-weight: bold; color: #2ecc71;">EP 01</span>
+                    <button id="next-btn" class="btn-icon"><i class="fa fa-step-forward"></i></button>
+                </div>
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #2ecc71; color: white;"><i class="fa fa-download"></i> Descargar</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        let currentIndex = -1;
+
+        window.updatePlayer = function(index, title, driveId) {
+            currentIndex = index;
+            document.getElementById('player-title').innerText = `Reproduciendo: Ep ${index + 1} - ${title}`;
+            document.getElementById('current-ep-label').innerText = `EP ${(index + 1).toString().padStart(2, '0')}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            document.getElementById('prev-btn').disabled = (index === 0);
+            document.getElementById('next-btn').disabled = (index === episodes.length - 1);
+
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        document.getElementById('prev-btn').onclick = () => { if(currentIndex > 0) { const ep = episodes[currentIndex-1]; updatePlayer(currentIndex-1, ep.title, ep.driveId); } };
+        document.getElementById('next-btn').onclick = () => { if(currentIndex < episodes.length-1) { const ep = episodes[currentIndex+1]; updatePlayer(currentIndex+1, ep.title, ep.driveId); } };
+    </script>
+
+    <style>
+        .episode-row {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            padding: 15px 25px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .episode-row:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: #2ecc71;
+            transform: translateX(10px);
+        }
+        .ep-num {
+            font-size: 24px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.1);
+            min-width: 40px;
+        }
+        .ep-info h4 { font-size: 16px; margin-bottom: 4px; }
+        .ep-info p { font-size: 13px; color: var(--text-secondary); }
+        .play-small {
+            background: #2ecc71;
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-left: auto;
+            cursor: pointer;
+        }
+    </style>
+</BaseLayout>

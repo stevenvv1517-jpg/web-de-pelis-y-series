@@ -1,0 +1,107 @@
+---
+const { title = "Nexus Stream | Series y Películas Online", activePage = "inicio" } = Astro.props;
+import '../styles/style.css';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="/images/nexus_stream_logo.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- El código nativo de Adsterra se coloca directamente donde quieres el banner, no requiere un global en el head. -->
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo" style="display:flex; align-items:center;">
+            <a href="/">
+                <img src="/images/nexus_stream_logo.png" alt="Nexus Stream Logo" style="height: 50px; border-radius: 8px; cursor: pointer;" />
+            </a>
+        </div>
+        <nav class="nav-links" style="display:flex; align-items:center;">
+            <a href="/" class={activePage === 'inicio' ? 'active' : ''}>Inicio/Series</a>
+            <a href="/peliculas" class={activePage === 'peliculas' ? 'active' : ''}>Películas</a>
+            <a href="/#buzon">Buzón</a>
+            <div class="search-container" style="position: relative;">
+                <input id="global-search-input" type="text" placeholder="Buscar..." style="background:transparent; border:none; color:white; outline:none; padding:5px; width:150px;" />
+                <button style="background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-size:16px;">🔍</button>
+                <div id="search-results-dropdown" class="search-results-dropdown"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <slot />
+    </main>
+
+    <footer>
+        <p>&copy; <span id="admin-trigger" style="cursor: default;">2026 Nexus Stream</span>. Todos los derechos reservados. No almacenamos material con derechos de autor.</p>
+        <p style="font-size: 12px; margin-top: 10px;">
+            <a href="#" style="color: var(--text-secondary);">Política de Privacidad</a> | 
+            <a href="#" style="color: var(--text-secondary);">Términos y Condiciones</a>
+        </p>
+    </footer>
+
+    <script is:inline>
+        document.getElementById('admin-trigger').addEventListener('dblclick', () => {
+            const pass = prompt("Acceso de Administrador. Ingrese clave:");
+            if(pass === "admin123") {
+                window.location.href = "/admin";
+            }
+        });
+    </script>
+
+    <script is:inline>
+        // Sistema Global de Favoritos
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.fav-btn');
+            if (!btn) return;
+
+            e.stopPropagation(); // Evitar que el click en el corazón active el link de la card
+            
+            const id = btn.dataset.id;
+            const title = btn.dataset.title;
+            const img = btn.dataset.img;
+            const url = btn.dataset.url;
+
+            let favs = JSON.parse(localStorage.getItem('nexus_favs') || '[]');
+            const index = favs.findIndex(f => f.id === id);
+
+            if (index > -1) {
+                favs.splice(index, 1);
+                btn.classList.remove('active');
+            } else {
+                favs.push({ id, title, img, url });
+                btn.classList.add('active');
+            }
+
+            localStorage.setItem('nexus_favs', JSON.stringify(favs));
+            
+            // Disparar evento para que otras partes de la UI se actualicen (como la home)
+            document.dispatchEvent(new CustomEvent('favsUpdated'));
+        });
+
+        // Marcar botones activos al cargar
+        function syncFavButtons() {
+            const favs = JSON.parse(localStorage.getItem('nexus_favs') || '[]');
+            const ids = favs.map(f => f.id);
+            document.querySelectorAll('.fav-btn').forEach(btn => {
+                if (ids.includes(btn.dataset.id)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', syncFavButtons);
+        // También ejecutar después de navegar en Astro (si usas View Transitions, pero aquí parece navegación normal)
+        syncFavButtons();
+    </script>
+
+    <script is:inline src="/script.js"></script>
+</body>
+</html>

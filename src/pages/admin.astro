@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// En Astro, podemos usar fs si corremos en modo servidor, pero para este dashboard 
+// usaremos lógica de cliente para mayor compatibilidad con tu flujo de trabajo.
+---
+
+<BaseLayout title="Admin Dashboard | Nexus Stream" activePage="admin">
+    <div class="admin-container" style="padding-top: 100px; padding-bottom: 50px;">
+        <div class="content-section">
+            <div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                <h1 style="font-size: 32px; border-left: 5px solid var(--accent); padding-left: 20px;">Panel Administrativo</h1>
+                <div class="status-badge" style="background: rgba(0, 255, 0, 0.1); color: #00ff00; padding: 10px 20px; border-radius: 30px; border: 1px solid #00ff00; font-size: 14px;">● Web Online</div>
+            </div>
+
+            <!-- Estadísticas Dinámicas -->
+            <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 50px;">
+                <div class="stat-card" style="background: var(--bg-card); padding: 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: center; transition: 0.3s; cursor: default;">
+                    <i class="fa fa-users" style="font-size: 40px; color: var(--accent); margin-bottom: 15px;"></i>
+                    <h3 style="color: var(--text-secondary); font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Visitas Totales</h3>
+                    <p id="total-visits" style="font-size: 42px; font-weight: 800; margin-top: 10px;">0</p>
+                </div>
+                <div class="stat-card" style="background: var(--bg-card); padding: 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: center; transition: 0.3s; cursor: default;">
+                    <i class="fa fa-play-circle" style="font-size: 40px; color: #ff2a5f; margin-bottom: 15px;"></i>
+                    <h3 style="color: var(--text-secondary); font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Reproducciones</h3>
+                    <p id="total-views" style="font-size: 42px; font-weight: 800; margin-top: 10px;">0</p>
+                </div>
+                <div class="stat-card" style="background: var(--bg-card); padding: 30px; border-radius: 24px; border: 1px solid var(--glass-border); text-align: center; transition: 0.3s; cursor: default;">
+                    <i class="fa fa-th-large" style="font-size: 40px; color: #ffc107; margin-bottom: 15px;"></i>
+                    <h3 style="color: var(--text-secondary); font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Contenido Publicado</h3>
+                    <p id="catalog-count" style="font-size: 42px; font-weight: 800; margin-top: 10px;">12 <small style="font-size: 14px; color: var(--text-secondary); font-weight: 400;">Items</small></p>
+                </div>
+            </div>
+
+            <!-- Buzón de Mensajes Dinámico -->
+            <div class="log-container" style="background: var(--bg-card); padding: 35px; border-radius: 28px; border: 1px solid var(--glass-border); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <div>
+                        <h3 style="font-size: 26px; margin-bottom: 5px;">Mande de Sugerencias</h3>
+                        <p style="font-size: 14px; color: var(--text-secondary);">Gestiona los mensajes enviados por tus usuarios</p>
+                    </div>
+                    <button id="clear-data" class="btn-secondary" style="font-size: 12px; padding: 10px 15px; border-radius: 12px; border: 1px solid rgba(255,50,50,0.5); color: #ff3333; background: transparent;">
+                        <i class="fa fa-trash"></i> Vaciar Buzón
+                    </button>
+                </div>
+                
+                <div id="messages-list" style="display: flex; flex-direction: column; gap: 20px;">
+                    <!-- Aquí se cargan los mensajes -->
+                    <div style="text-align: center; padding: 60px; color: var(--text-secondary);">
+                        <i class="fa fa-spinner fa-spin" style="font-size: 32px; margin-bottom: 15px;"></i>
+                        <p>Cargando datos del servidor local...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <a href="/" class="btn-primary" style="text-align: center; text-decoration: none; padding: 18px; border-radius: 16px;">
+                    <i class="fa fa-home"></i> Volver a la Web
+                </a>
+                <button onclick="window.location.reload()" class="btn-secondary" style="padding: 18px; border-radius: 16px;">
+                    <i class="fa fa-refresh"></i> Refrescar Panel
+                </button>
+            </div>
+        </div>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    // --- SEGURIDAD ---
+    if (localStorage.getItem('admin_auth') !== 'true') {
+        const pass = prompt("Acceso Restringido. Ingrese Clave de Administrador:");
+        if (pass === "admin123") { 
+            localStorage.setItem('admin_auth', 'true'); 
+            updateDashboard();
+        } else { 
+            window.location.href = "/"; 
+        }
+    }
+
+    // --- CARGAR DATOS ---
+    function updateDashboard() {
+        // Stats
+        document.getElementById('total-visits').innerText = localStorage.getItem('nexus_total_visits') || '0';
+        document.getElementById('total-views').innerText = localStorage.getItem('nexus_total_views') || '0';
+        
+        // Mensajes
+        const messages = JSON.parse(localStorage.getItem('nexus_feedback') || '[]');
+        const list = document.getElementById('messages-list');
+
+        if (messages.length === 0) {
+            list.innerHTML = `
+                <div style="text-align: center; padding: 60px; border: 1px dashed var(--glass-border); border-radius: 20px;">
+                    <i class="fa fa-envelope-open-o" style="font-size: 40px; margin-bottom: 15px; opacity: 0.3;"></i>
+                    <p>No hay mensajes nuevos en el buzón.</p>
+                </div>
+            `;
+            return;
+        }
+
+        list.innerHTML = messages.map((m, index) => `
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 25px; border-radius: 20px; position: relative; transition: 0.3s;" class="msg-card">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                    <div>
+                        <span style="background: var(--accent); color: white; padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 800; text-transform: uppercase; margin-right: 10px;">${m.type}</span>
+                        <span style="color: grey; font-size: 12px;"><i class="fa fa-calendar"></i> ${m.date}</span>
+                    </div>
+                    <button onclick="deleteMsg(${m.id})" style="background: transparent; border: none; color: #ff3333; cursor: pointer; font-size: 18px;" title="Borrar mensaje">
+                        <i class="fa fa-times-circle"></i>
+                    </button>
+                </div>
+                <p style="color: #eee; line-height: 1.6; font-size: 15px; letter-spacing: 0.3px;">${m.message}</p>
+            </div>
+        `).join('');
+    }
+
+    window.deleteMsg = function(id) {
+        if(confirm("¿Borrar este mensaje?")) {
+            let messages = JSON.parse(localStorage.getItem('nexus_feedback') || '[]');
+            messages = messages.filter(m => m.id !== id);
+            localStorage.setItem('nexus_feedback', JSON.stringify(messages));
+            updateDashboard();
+        }
+    }
+
+    document.getElementById('clear-data').onclick = () => {
+        if(confirm("¿Vaciar todo el buzón? Esta acción no se puede deshacer.")) {
+            localStorage.removeItem('nexus_feedback');
+            updateDashboard();
+        }
+    };
+
+    // Inicializar
+    updateDashboard();
+    // Auto-refresco cada 10 segundos
+    setInterval(updateDashboard, 10000);
+</script>
+
+<style>
+    .msg-card:hover {
+        background: rgba(255,255,255,0.06) !important;
+        transform: translateY(-2px);
+        border-color: var(--accent) !important;
+    }
+</style>

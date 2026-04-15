@@ -1,0 +1,245 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Malcolm in the Middle: La vida sigue siendo injusta | Nexus Stream" activePage="inicio">
+    <style>
+        /* Estilos de la Ficha Técnica (Mantenemos tu diseño preferido) */
+        .infor {
+            background: rgba(20, 20, 25, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        .entrada { display: flex; gap: 30px; margin-bottom: 30px; }
+        .poster img { width: 230px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .detall { flex: 1; }
+        .bs-title { font-size: 32px; margin-bottom: 15px; color: var(--accent); }
+        .Eti, .genero, .califica { list-style: none; padding: 0; display: flex; gap: 15px; margin-bottom: 15px; font-size: 14px; color: var(--text-secondary); }
+        .Eti li.pel { background: var(--accent); color: white; padding: 2px 10px; border-radius: 5px; font-size: 12px; }
+        .porcentajes { display: flex; align-items: center; gap: 10px; color: forestgreen; font-weight: bold; }
+        .sinopsis { line-height: 1.6; color: var(--text-primary); }
+        
+        .botones { list-style: none; padding: 0; display: flex; gap: 15px; margin-top: 25px; }
+        .botones a { 
+            text-decoration: none; background: rgba(255,255,255,0.05); color: white; 
+            padding: 12px 25px; border-radius: 12px; display: flex; align-items: center; gap: 10px;
+            transition: 0.3s; border: 1px solid var(--glass-border);
+        }
+        .botones a:hover { background: var(--accent); transform: translateY(-3px); }
+
+        /* Estilos de Episodios */
+        .caps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+        .episode-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .episode-card:hover { background: rgba(255,255,255,0.08); border-color: var(--accent); transform: scale(1.02); }
+        .ep-img { height: 130px; background-size: cover; background-position: center; position: relative; }
+        .ep-info { padding: 12px; }
+        .ep-info h4 { margin: 0; font-size: 14px; }
+        .ep-info span { font-size: 12px; color: var(--text-secondary); }
+
+        /* Reproductor y Navegación */
+        .player-header { padding: 15px; background: rgba(0,0,0,0.5); border-radius: 15px 15px 0 0; border: 1px solid var(--glass-border); border-bottom: 0; }
+        .player-wrapper { 
+            aspect-ratio: 16/9; width: 100%; background: #000; border: 1px solid var(--glass-border); 
+            border-radius: 0 0 15px 15px; overflow: hidden; position: relative;
+        }
+        .player-nav { display: flex; justify-content: space-between; padding: 15px; margin-top: 10px; }
+        .nav-btn { background: var(--bg-card); border: 1px solid var(--glass-border); color: white; padding: 10px 20px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .nav-btn:hover:not(:disabled) { background: var(--accent); }
+        .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        @media (max-width: 768px) {
+            .entrada { flex-direction: column; align-items: center; text-align: center; }
+            .botones { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+
+    <!-- Fondo Hero Dinámico -->
+    <div class="hero-bg" style="position: absolute; top:0; left:0; width:100%; height:500px; background: linear-gradient(to bottom, rgba(10,10,15,0) 0%, rgba(10,10,15,1) 100%), url('/images/malcolm_hero.jpg') center/cover; z-index: -1;"></div>
+
+    <div class="infor">
+        <div class="entrada">
+            <div class="poster">
+                <img src="/images/malcolm_poster.jpg" alt="Poster Malcolm"/>
+            </div>
+            <div class="detall">
+                <h1 class="bs-title">Malcolm in the Middle: La vida sigue siendo injusta</h1>
+                <ul class="Eti">
+                    <li class="pel">Serie</li>
+                    <li>1 Temporada</li>
+                    <li>2026</li>
+                </ul>
+                <ul class="genero">
+                    <li>Comedia</li>
+                    <li>Drama</li>
+                </ul>
+                <div class="califica" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class='porcentajes' style="color: #4CAF50; font-weight: bold; display: flex; align-items: center; gap: 5px;">
+                        <i class="fa fa-star"></i>
+                        <span>84.0%</span>
+                    </div>
+                    <span style="color: var(--text-secondary); font-size: 14px;">(135 votos)</span>
+                </div>
+
+                <p class="sinopsis">Han pasado veinte años, y Malcolm y su familia siguen sin aprender nada. La vida sigue siendo injusta, pero ahora con redes sociales y crisis de mediana edad.</p>
+                
+                <ul class="botones">
+                    <li><a href="https://youtu.be/j2-octxleCk" target="_blank"><i class="fa fa-youtube-play"></i> Ver Trailer</a></li>
+                    <li><a href="#player"><i class="fa fa-play"></i> Reproducir</a></li>
+                    <li><a href="#!" id="dwnld-btn"><i class="fa fa-download"></i> Descargar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Reproductor Central -->
+        <div id="player" style="margin-top: 50px;">
+            <div class="player-header">
+                <h3 id="playing-title" style="margin: 0; font-size: 18px; color: var(--accent);">Selecciona un episodio</h3>
+            </div>
+            <div class="player-wrapper">
+                <!-- Iframe para Drive -->
+                <iframe id="main-iframe" src="" style="width: 100%; height: 100%; border: 0;" allowfullscreen></iframe>
+                <!-- Jugador Nativo para Directos (.mp4, .mkv) -->
+                <video id="direct-video" style="width: 100%; height: 100%; display: none; background: #000;" controls></video>
+            </div>
+            <div class="player-nav">
+                <button id="prev-btn" class="nav-btn" disabled><i class="fa fa-arrow-left"></i> Anterior</button>
+                <button id="next-btn" class="nav-btn" disabled>Siguiente <i class="fa fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div id="allEpList">
+            <h2 style="margin-top: 40px; border-left: 4px solid var(--accent); padding-left: 15px;">Episodios (Temporada 1)</h2>
+            <div class="caps-grid">
+                <!-- Cap 1 -->
+                <div class="episode-card" onclick="playEpisode(0)">
+                    <div class="ep-img" style="background-image: url('https://image.tmdb.org/t/p/w300/euQUHCCiaTM7DZyULE4AIYsYVcD.jpg');"></div>
+                    <div class="ep-info">
+                        <h4>1 - Episodio 1</h4>
+                        <span>27m</span>
+                    </div>
+                </div>
+                <!-- Cap 2 -->
+                <div class="episode-card" onclick="playEpisode(1)">
+                    <div class="ep-img" style="background-image: url('https://image.tmdb.org/t/p/w300/mLSBftIQaBOWTMXWjnqRmrqMe5f.jpg');"></div>
+                    <div class="ep-info">
+                        <h4>2 - Episodio 2</h4>
+                        <span style="color: var(--accent);">Local (720p)</span>
+                    </div>
+                </div>
+                <!-- Cap 3 -->
+                <div class="episode-card" onclick="playEpisode(2)">
+                    <div class="ep-img" style="background-image: url('https://media.themoviedb.org/t/p/w227_and_h127_face/mBrq6XJD8AqcS1bzFB7SEkLJ84b.jpg');"></div>
+                    <div class="ep-info">
+                        <h4>3 - Episodio 3</h4>
+                        <span style="color: var(--accent);">1080p Dual Latino</span>
+                    </div>
+                </div>
+                <!-- Cap 4 (NUEVO) -->
+                <div class="episode-card" onclick="playEpisode(3)">
+                    <div class="ep-img" style="background-image: url('https://media.themoviedb.org/t/p/w227_and_h127_face/p81euZyFRN2VwogyyX8VZfBjMAk.jpg');"></div>
+                    <div class="ep-info">
+                        <h4>4 - Episodio 4</h4>
+                        <span style="color: var(--accent);">1080p Dual Latino</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Descargas -->
+        <div class="opciones-descarga" style="margin-top: 50px;">
+            <div class="titulo"> <i class="fa fa-download"></i><span> Descargas</span></div>
+            <table>
+                <thead>
+                    <tr><th scope="col">#</th><th>SERVIDOR</th><th>IDIOMA</th><th>DESCARGAR</th></tr>
+                </thead>
+                <tbody>
+                    <tr><th>1</th><td>Servidor Local / Drive</td><td>Latino/Subtitulado</td><td><a href="#!" id="dwn-link" class="link" target="_blank">Descargar</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    const episodes = [
+        { title: "Episodio 1", driveId: "1Y_C3EItBrcuM02sSIaufEbwTPf9wX2ZW", dwnUrl: "https://drive.google.com/file/d/1Y_C3EItBrcuM02sSIaufEbwTPf9wX2ZW/view?usp=sharing", type: 'drive' },
+        { title: "Episodio 2", file: "/eJwzMrc0MTfUNdQ10k0tjs9JLNFNK83Jic9I0S02AwBtoQiC.mp4", dwnUrl: "/eJwzMrc0MTfUNdQ10k0tjs9JLNFNK83Jic9I0S02AwBtoQiC.mp4", type: 'direct' },
+        { title: "Episodio 3", file: "/Malcom.in.the.Middle.La.vida.sigue.siendo.injusta.S01E03.2026.WEB-DL.1080p-Dual-Lat.mkv", dwnUrl: "/Malcom.in.the.Middle.La.vida.sigue.siendo.injusta.S01E03.2026.WEB-DL.1080p-Dual-Lat.mkv", type: 'direct' },
+        { title: "Episodio 4", file: "/Malcom.In.The.Middle.La.Vida.Sigue.Siendo.Injusta.S01e04.2026.1080P-Dual-Lat.mkv", dwnUrl: "/Malcom.In.The.Middle.La.Vida.Sigue.Siendo.Injusta.S01e04.2026.1080P-Dual-Lat.mkv", type: 'direct' }
+    ];
+
+    let currentIdx = -1;
+    const iframe = document.getElementById('main-iframe');
+    const directVideo = document.getElementById('direct-video');
+
+    window.playEpisode = function(index) {
+        if (index < 0 || index >= episodes.length) return;
+        currentIdx = index;
+        const ep = episodes[index];
+        const resId = "malcolm-cap-" + index;
+        
+        document.getElementById('playing-title').innerText = `Reproduciendo: ${ep.title}`;
+        
+        if(ep.type === 'direct') {
+            iframe.style.display = 'none';
+            directVideo.style.display = 'block';
+            directVideo.src = ep.file;
+            iframe.src = "";
+            
+            const saved = localStorage.getItem('time_' + resId);
+            if(saved) directVideo.currentTime = parseFloat(saved);
+        } else {
+            directVideo.style.display = 'none';
+            iframe.style.display = 'block';
+            iframe.src = `https://drive.google.com/file/d/${ep.driveId}/preview`;
+            directVideo.pause();
+        }
+
+        document.getElementById('dwn-link').href = ep.dwnUrl;
+        document.getElementById('dwnld-btn').href = ep.dwnUrl;
+
+        localStorage.setItem('last-ep-malcolm-2026', index);
+        if(window.saveLastWatched) window.saveLastWatched(`Malcolm: ${ep.title}`, '/images/malcolm_poster.jpg', '/malcolm-2026');
+
+        updateNav();
+        window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+    }
+
+    directVideo.ontimeupdate = () => {
+        if(directVideo.currentTime > 0) {
+            localStorage.setItem('time_malcolm-cap-' + currentIdx, directVideo.currentTime);
+        }
+    };
+
+    function updateNav() {
+        document.getElementById('prev-btn').disabled = (currentIdx <= 0);
+        document.getElementById('next-btn').disabled = (currentIdx >= episodes.length - 1);
+    }
+
+    document.getElementById('prev-btn').onclick = () => playEpisode(currentIdx - 1);
+    document.getElementById('next-btn').onclick = () => playEpisode(currentIdx + 1);
+
+    // Auto-Carga
+    window.addEventListener('DOMContentLoaded', () => {
+        const saved = localStorage.getItem('last-ep-malcolm-2026');
+        if (saved !== null) playEpisode(parseInt(saved));
+        else playEpisode(0); // Primero por defecto
+    });
+</script>

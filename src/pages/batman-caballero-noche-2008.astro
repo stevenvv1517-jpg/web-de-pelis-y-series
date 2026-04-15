@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Batman: El Caballero de la Noche - 2008 | Nexus Stream" activePage="peliculas">
+    <style>
+        /* Estilos específicos para este formato de ficha */
+        .infor {
+            background: rgba(20, 20, 25, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        .entrada { display: flex; gap: 30px; margin-bottom: 30px; }
+        .poster img { width: 230px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .detall { flex: 1; }
+        .bs-title { font-size: 32px; margin-bottom: 15px; color: var(--accent); }
+        .Eti, .genero, .califica { list-style: none; padding: 0; display: flex; gap: 15px; margin-bottom: 15px; font-size: 14px; color: var(--text-secondary); }
+        .Eti li.pel { background: var(--accent); color: white; padding: 2px 10px; border-radius: 5px; font-size: 12px; }
+        .porcentajes { display: flex; align-items: center; gap: 10px; color: forestgreen; font-weight: bold; }
+        .sinopsis { line-height: 1.6; color: var(--text-primary); }
+        
+        .botones { list-style: none; padding: 0; display: flex; gap: 15px; margin-top: 25px; }
+        .botones a { 
+            text-decoration: none; background: rgba(255,255,255,0.05); color: white; 
+            padding: 12px 25px; border-radius: 12px; display: flex; align-items: center; gap: 10px;
+            transition: 0.3s; border: 1px solid var(--glass-border);
+        }
+        .botones a:hover { background: var(--accent); transform: translateY(-3px); }
+
+        .repro-opciones { list-style: none; padding: 0; display: flex; gap: 10px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px 10px 0 0; }
+        .repro-opciones a { text-decoration: none; color: white; padding: 8px 15px; border-radius: 5px; font-size: 14px; }
+        .repro-opciones a.active { background: var(--accent); }
+
+        .player_conte { width: 100%; height: 500px; border: 0; border-radius: 0 0 15px 15px; background: #000; }
+
+        .opciones-descarga { margin-top: 40px; background: rgba(0,0,0,0.2); border-radius: 15px; padding: 20px; border: 1px solid var(--glass-border); }
+        .opciones-descarga table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .opciones-descarga th { text-align: left; padding: 12px; color: var(--accent); border-bottom: 1px solid var(--glass-border); }
+        .opciones-descarga td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .opciones-descarga .link { background: var(--accent); color: white; padding: 5px 15px; border-radius: 5px; text-decoration: none; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .entrada { flex-direction: column; align-items: center; text-align: center; }
+            .Eti, .genero, .califica { justify-content: center; }
+            .botones { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+
+    <div class="infor">
+        <div class="entrada">
+            <div class="poster">
+                <img src="/images/batman_poster.jpg" alt="Poster Batman"/>
+            </div>
+            <div class="detall">
+                <h1 class="bs-title">Batman: El caballero de la noche</h1>
+                <ul class="Eti">
+                    <li class="pel">Pelicula</li>
+                    <li>2h 32m</li>
+                    <li>2008</li>
+                </ul>
+                <ul class="genero">
+                    Acción, Crimen, Suspense
+                </ul>
+                <ul class="califica">
+                    <div class='porcentajes'>
+                        <i class="fa fa-heart" style="color: #e91e63;"></i>
+                        <span>94.3%</span>
+                    </div>
+                    <li class="strella">
+                        <i class="fa fa-star" style="color: #ffc107;"></i>
+                        <i class="fa fa-star" style="color: #ffc107;"></i>
+                        <i class="fa fa-star" style="color: #ffc107;"></i>
+                        <i class="fa fa-star" style="color: #ffc107;"></i>
+                        <i class="fa fa-star-half-o" style="color: #ffc107;"></i>
+                    </li>
+                    <span>(35464)</span>
+                </ul>
+
+                <p class="sinopsis">Cuando la amenaza conocida como el Joker causa estragos y caos en la gente de Ciudad Gótica, Batman debe aceptar una de las mayores pruebas psicológicas y físicas de su capacidad para luchar contra la injusticia.</p>
+                
+                <ul class="botones">
+                    <li><a href="https://youtu.be/EXeTwQWrcwY?si=8eWyTz8GFmyWtDQq" target="_blank"><i class="fa fa-youtube-play"></i><p> Ver Trailer</p></a></li>
+                    <li><a href="#repro"><i class="fa fa-play"></i><p> Reproducir</p></a></li>
+                    <li><a href="https://drive.google.com/file/d/17TUslxBjW2KBdR0TPEnrwz4F3pZjcf7o/view?usp=sharing" target="_blank"><i class="fa fa-download"></i><p> Descargar</p></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="repro">
+            <div class="repro-opciones">
+                <a href="javascript:void(0)" id="btn-1" class="active"><i class="fa fa-google"></i> Drive</a>
+                <a href="javascript:void(0)" id="btn-2"><i class="fa fa-cloud"></i> Mega</a>
+                <a href="javascript:void(0)" id="btn-3"><i class="fa fa-youtube-play"></i> Trailer</a>
+            </div>
+            <div class="player-box">
+                <iframe id="main-iframe" class="player_conte" src="https://drive.google.com/file/d/17TUslxBjW2KBdR0TPEnrwz4F3pZjcf7o/preview" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="opciones-descarga">
+            <div class="titulo" style="font-size: 18px; margin-bottom: 15px; font-weight: bold;">
+                <i class="fa fa-download"></i><span> Descargas</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th><th>SERVIDOR</th><th>IDIOMA</th><th>DESCARGAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><th>1</th><td>Google Drive</td><td>Latino/Subtitulado</td><td>
+                        <a href="https://drive.google.com/file/d/17TUslxBjW2KBdR0TPEnrwz4F3pZjcf7o/view?usp=sharing" target="_blank" class="link"><span> Descargar</span></a>
+                    </td></tr>
+                    <tr><th>2</th><td>Mega</td><td>Subtitulado</td><td>
+                        <a href="https://drive.google.com/file/d/17TUslxBjW2KBdR0TPEnrwz4F3pZjcf7o/view?usp=sharing" target="_blank" class="link"><span> Descargar</span></a>
+                    </td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    const iframe = document.getElementById('main-iframe');
+    const b1 = document.getElementById('btn-1');
+    const b2 = document.getElementById('btn-2');
+    const b3 = document.getElementById('btn-3');
+
+    b1.onclick = () => {
+        iframe.src = "https://drive.google.com/file/d/17TUslxBjW2KBdR0TPEnrwz4F3pZjcf7o/preview";
+        setActive(b1);
+    };
+    b2.onclick = () => {
+        // Aquí puedes poner el link de reproducción de Mega
+        iframe.src = "https://mega.nz/embed/#!placeholder_id"; 
+        setActive(b2);
+    };
+    b3.onclick = () => {
+        iframe.src = "https://www.youtube.com/embed/EXeTwQWrcwY";
+        setActive(b3);
+    };
+
+    function setActive(el) {
+        [b1, b2, b3].forEach(b => b.classList.remove('active'));
+        el.classList.add('active');
+    }
+
+    if(window.saveLastWatched) {
+        window.saveLastWatched('Batman: El Caballero de la Noche', '/images/batman_poster.jpg', '/batman-caballero-noche-2008');
+    }
+</script>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Avengers: Endgame (2019) | Nexus Stream" activePage="peliculas">
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.3)), url('https://image.tmdb.org/t/p/original/7Ry6uTECmHwdvB7DUz987t3UfQw.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge">Saga Marvel</span>
+            <h1>Avengers: Endgame</h1>
+            <div class="meta" style="margin-bottom: 20px; color: var(--text-secondary);">
+                <span>2019</span> • <span>3h 01m</span> • <span>Acción, Sci-Fi, Aventura</span>
+            </div>
+            <p>Tras los eventos devastadores de Infinity War, los miembros restantes de los Vengadores y sus aliados intentarán revertir las acciones de Thanos en un último enfrentamiento épico.</p>
+        </div>
+    </section>
+
+    <section class="content-section" id="player">
+        <div class="section-header">
+            <h2><i class="fa fa-play-circle"></i> Reproductor Principal</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+                <iframe src="https://drive.google.com/file/d/1-zn_nBpV98AKGY83TBQXYxVjNKZkUv3Z/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>
+            </div>
+            <div style="padding: 20px; background: rgba(0,0,0,0.3); display: flex; justify-content: space-between; align-items: center;">
+                <p style="color: var(--text-secondary); font-size: 14px;"><i class="fa fa-info-circle"></i> Calidad: Full HD 1080p</p>
+                <a href="https://drive.google.com/file/d/1-zn_nBpV98AKGY83TBQXYxVjNKZkUv3Z/view?usp=sharing" target="_blank" class="btn-primary" style="padding: 10px 20px; text-decoration: none; border-radius: 10px; font-size: 14px;">
+                    <i class="fa fa-download"></i> Descargar
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
+
+<script is:inline>
+    if(window.saveLastWatched) {
+        window.saveLastWatched('Avengers: Endgame', 'https://image.tmdb.org/t/p/w300//or06vS3nBjnvK67Cc9pB6pB779d.jpg', '/avengers-endgame-2019');
+    }
+</script>

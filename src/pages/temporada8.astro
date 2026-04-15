@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Ninjago Temporada 8: Los Hijos de Garmadon | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('https://image.tmdb.org/t/p/original/m9Yy8i7Z61O9I3uGkR3A1nB8F5w.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge">Temporada 8</span>
+            <h1>Los Hijos de Garmadon</h1>
+            <p>Ninjago City enfrenta una nueva amenaza: una banda de motociclistas criminales busca las tres Máscaras Oni para resucitar al malvado Lord Garmadon. Los Ninja deben salir del retiro para proteger a la Princesa Harumi y evitar el regreso de la oscuridad.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios Estilo Gamer -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Episodios (10)</h2>
+            <div class="view-options">
+                <button class="btn-icon active"><i class="fa fa-th-list"></i></button>
+            </div>
+        </div>
+
+        <div class="episodes-container" style="display: grid; gap: 15px;">
+            <div class="episode-row" onclick="updatePlayer('1', 'La Máscara del Engaño', '1Upqi6F8foG3puf7aZI-3hl03tJW07k5V')">
+                <div class="ep-num">1</div>
+                <div class="ep-info">
+                    <h4>La Máscara del Engaño</h4>
+                    <p>Un nuevo grupo criminal roba la primera Máscara Oni, obligando a los Ninja a salir del retiro.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('2', 'La Princesa de Jade', '1etmLI7Wqqx1V4fzel9YNXrXAiiFy31oo')">
+                <div class="ep-num">2</div>
+                <div class="ep-info">
+                    <h4>La Princesa de Jade</h4>
+                    <p>Los Ninja conocen a la Princesa Harumi y protegen el palacio de un intento de robo.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('3', 'El Oni y el Dragón', '1VG4IEhRBiETgEA3LNp6wQy0SctOiSvoK')">
+                <div class="ep-num">3</div>
+                <div class="ep-info">
+                    <h4>El Oni y el Dragón</h4>
+                    <p>El equipo investiga el origen de las máscaras y el mito del Oni y el Dragón.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('4', 'Snake Jaguar', '1R5TwgsPy9gjvn3c310kW_biWnzObsccG')">
+                <div class="ep-num">4</div>
+                <div class="ep-info">
+                    <h4>Snake Jaguar</h4>
+                    <p>Zane se infiltra en los Hijos de Garmadon para descubrir la identidad de su líder.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('5', 'Aullido de hombre muerto', '10OM2qb3QntyUH3dfGKaZzRzaEFvzGlK7')">
+                <div class="ep-num">5</div>
+                <div class="ep-info">
+                    <h4>Aullido de hombre muerto</h4>
+                    <p>Los Ninja viajan al "Ojo de la Jungla" buscando la segunda Máscara Oni.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('6', 'El Silencioso', '1c1-Ds4CU4-i1WAOwY50hVN_bT8MR2Jc4')">
+                <div class="ep-num">6</div>
+                <div class="ep-info">
+                    <h4>El Silencioso</h4>
+                    <p>Se revela la verdadera identidad del líder de los Hijos de Garmadon en medio de una traición.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('7', 'Juego de Máscaras', '1_ocB88oEBjP_-xRHtjjcjP90DB4YKiQg')">
+                <div class="ep-num">7</div>
+                <div class="ep-info">
+                    <h4>Juego de Máscaras</h4>
+                    <p>Lloyd y Harumi luchan en el Templo de la Resurrección por el control de las máscaras.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('8', 'Dread on Arrival', '1xTtFNDlOvoOd690bdBcVIu5I1RG7rygr')">
+                <div class="ep-num">8</div>
+                <div class="ep-info">
+                    <h4>Dread on Arrival</h4>
+                    <p>El ritual se completa y una versión puramente malvada de Garmadon regresa a Ninjago.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('9', 'True Potential', '1uIQ1Z5PH982zzQgteqb4qC0Aby7w3gWW')">
+                <div class="ep-num">9</div>
+                <div class="ep-info">
+                    <h4>True Potential</h4>
+                    <p>Los Ninja intentan detener a Garmadon antes de que alcance su máximo poder.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+
+            <div class="episode-row" onclick="updatePlayer('10', 'Big Trouble, Little Ninjago', '1oMEwHyeVZOXc3PkKUQNqD3pDbOSWOhB9')">
+                <div class="ep-num">10</div>
+                <div class="ep-info">
+                    <h4>Big Trouble, Little Ninjago</h4>
+                    <p>El Coloso de Garmadon domina la ciudad y los Ninja enfrentan su hora más oscura.</p>
+                </div>
+                <button class="play-small">▶</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid var(--accent); padding-left: 15px;">Selecciona un episodio</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: var(--accent);"></i>
+                    <p>Listo para reproducir</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: space-between; align-items: center;">
+                <div class="ep-nav">
+                    <button class="btn-icon"><i class="fa fa-step-backward"></i></button>
+                    <span id="current-ep-display" style="margin: 0 15px; font-weight: bold; color: var(--accent);">EP 01</span>
+                    <button class="btn-icon"><i class="fa fa-step-forward"></i></button>
+                </div>
+                <div class="ep-actions">
+                    <button class="btn-secondary" style="margin-right: 10px;"><i class="fa fa-download"></i></button>
+                    <button class="btn-primary" onclick="alert('Marcado como favorito')"><i class="fa fa-heart"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline>
+        window.updatePlayer = function(num, title, driveId) {
+            document.getElementById('player-title').innerText = `Reproduciendo: Ep ${num} - ${title}`;
+            document.getElementById('current-ep-display').innerText = `EP ${num.padStart(2, '0')}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            
+            // Track view for admin panel
+            if (window.trackVideoView) window.trackVideoView();
+            // Marcar como visto (opcional)
+            if (window.markAsViewed) window.markAsViewed(`ninjago-t8-ep${num}`);
+            
+            // Scroll suave al reproductor
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-row {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            padding: 15px 25px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .episode-row:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent);
+            transform: translateX(10px);
+        }
+        .ep-num {
+            font-size: 24px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.1);
+            min-width: 40px;
+        }
+        .ep-info h4 { font-size: 16px; margin-bottom: 4px; }
+        .ep-info p { font-size: 13px; color: var(--text-secondary); }
+        .play-small {
+            background: var(--accent);
+            border: none;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-left: auto;
+            cursor: pointer;
+        }
+    </style>
+</BaseLayout>

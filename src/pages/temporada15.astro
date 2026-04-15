@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "Un Gran Problema", driveId: "1B2HT64-WXI3_xtxN3gL5w9qP2mmCRt6", desc: "Los poderes de Nya comienzan a fallar y el equipo investiga una señal misteriosa en el fondo del mar." },
+    { num: 2, title: "La Llamada de las Profundidades", driveId: "11deoaD29dPXqjdIKD6znSeZW4CNCD2g3", desc: "Los Ninja viajan al fondo del océano en el Sub-Speeder para encontrar el origen de la perturbación." },
+    { num: 3, title: "Insostenible", driveId: "1cUidtPQu7qn-74_RiOU-ZUqfh_zEpBgu", desc: "El equipo enfrenta dificultades técnicas y ataques de criaturas marinas desconocidas." },
+    { num: 4, title: "Cinco Mil Brazas de Profundidad", driveId: "1YJOLJ2E1XPoCMyrPKN7R1s996WBxTf0Q", desc: "Los Ninja llegan a una ciudad submarina y descubren a un nuevo y ambicioso rey." },
+    { num: 5, title: "La Ira de Kalmaar", driveId: "1HvTSgvgKclyG2ekmVSgk8AP3crUTC3nA", desc: "El Príncipe Kalmaar revela sus planes para despertar a la serpiente legendaria Wojira." },
+    { num: 6, title: "Larga Vida al Rey", driveId: "1HP4ufyCNGTN03USJU6WO2gjFGc7Qz1d1", desc: "Kalmaar conspira para tomar el trono de Merlopia y comenzar su conquista de la superficie." },
+    { num: 7, title: "Escape de Merlopia", driveId: "1PgEr2wf-DBRfRffmRJu7GjG5bMu9c3qy", desc: "Los Ninja deben huir de la ciudad real mientras son perseguidos por las guardias de élite." },
+    { num: 8, title: "El Relato de Benthomaar", driveId: "1l61VUZ1TInrSCS840c0xQ0u2bLkaPsjL", desc: "El hermano adoptivo de Kalmaar revela la verdadera historia de Wojira y los Amuletos." },
+    { num: 9, title: "El Amuleto de la Tormenta", driveId: "12fW1-HMWXbb0TmKRLP8ScP-9TNCelL4W", desc: "La carrera por obtener el primer amuleto antes que Kalmaar se intensifica." },
+    { num: 10, title: "El Enigma de la Esfinge", driveId: "1Q-QaMm6f1YMN9QC_41wzrWDnfumlINKo", desc: "Los Ninja buscan pistas en Ninjago City sobre el paradero del segundo amuleto." },
+    { num: 11, title: "Papel de Periódico", driveId: "17-8gL3sQWzI4mejzdL5D6ge_s9AHTXQP", desc: "Nya intenta controlar sus crecientes poderes mientras Kalmaar ataca la superficie." },
+    { num: 12, title: "Maestro del Mar", driveId: "1wSbM-j4bn2mOgEKMLn0IeNK5gRsM2RcA", desc: "Nya debe aceptar su conexión única con el elemento agua para salvar a sus amigos." },
+    { num: 13, title: "La Calma antes de la Tormenta", driveId: "1YUUGuZvPxzSSV47ivLMinTxom2Gtcvz9", desc: "El equipo se prepara para la batalla definitiva mientras las mareas suben peligrosamente." },
+    { num: 14, title: "Asalto a Ninjago City", driveId: "1Nehe4ewkWcg4tCF6kr9QqaEXwUgJr4Pt", desc: "Kalmaar lanza una invasión masiva contra la ciudad usando su ejército submarino." },
+    { num: 15, title: "Nyad", driveId: "10sP6V-9X0YxVuxpJ19NlffYBQPDD9h0y", desc: "Nya descubre un antiguo secreto que podría requerir el mayor sacrificio de su vida." },
+    { num: 16, title: "El Ascenso de Wojira", driveId: "1udjN8Vi9FskS8ltYFoxLe_auJbBXBZeH", desc: "La batalla épica por Ninjago termina con una transformación que cambiará al equipo para siempre." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 15: Seabound | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp15.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #00d2ff; color: #0a0a0f; border: none; font-weight: 800;">EN EL MAR</span>
+            <h1>Seabound</h1>
+            <p>Las mareas están subiendo y los poderes de Nya están fuera de control. Los Ninja deben sumergirse en los oscuros abismos del océano para detener al Príncipe Kalmaar antes de que despierte a una fuerza ancestral capaz de inundar el mundo.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas Inteligentes -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 style="color: #00d2ff;"><i class="fa fa-tint"></i> Misiones Submarinas (16)</h2>
+        </div>
+
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp15.jpg');`}>
+                        <div class="ep-overlay" style="background: rgba(0, 210, 255, 0.2);">
+                            <span class="ep-badge" style="background: #00d2ff; color: #000;">CAP {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #00d2ff; padding-left: 15px;">Inmersión Profunda...</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid #00d2ff66; box-shadow: 0 0 30px rgba(0, 210, 255, 0.1);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #00d2ff;"></i>
+                    <p>Escuchando la llamada del mar</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #00d2ff; color: black;"><i class="fa fa-download"></i> Descargar Episodio</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `REPRODUCIENDO: Ep ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+        .episode-card:hover { border-color: #00d2ff; transform: translateY(-5px); }
+        .ep-thumbnail { height: 160px; background-size: cover; background-position: center; position: relative; }
+        .ep-overlay { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+        .ep-badge { position: absolute; top: 10px; left: 10px; padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 11px; }
+        .ep-details { padding: 15px; }
+        .ep-details h4 { font-size: 15px; margin-bottom: 5px; color: white; }
+        .ep-details p { font-size: 12px; color: var(--text-secondary); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</BaseLayout>

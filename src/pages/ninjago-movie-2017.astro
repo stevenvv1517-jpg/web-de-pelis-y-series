@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="LEGO Ninjago: La Película (2017) | Calidad Drive" activePage="peliculas">
+    <!-- Hero Section idéntica a las Temporadas -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.3)), url('https://image.tmdb.org/t/p/original/9J7S1S4pY29h97YwW1HPrZIsP2M.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge">Especial</span>
+            <h1>The LEGO Ninjago Movie</h1>
+            <p>Lloyd, alias el Ninja Verde, junto con sus amigos ninjas, debe enfrentarse al malvado Garmadon, el peor villano de todos... que también resulta ser su padre.</p>
+        </div>
+    </section>
+
+    <!-- Sección de "Episodio" Único -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Reproducción Directa</h2>
+        </div>
+        <div class="grid-container horizontal-grid" style="justify-content: center;">
+            <!-- Tarjeta de la Película -->
+            <div class="card active" data-id="ninjago-movie-2017" onclick="updatePlayer(0)" style="max-width: 400px; border: 2px solid var(--accent);">
+                <div class="fav-btn" onclick="event.stopPropagation()" data-id="ninjago-movie-2017" data-title="LEGO Ninjago: La Película" data-img="/images/ninjago_movie_poster.jpg" data-url="/ninjago-movie-2017"><i class="fa fa-heart-o"></i></div>
+                <div class="card-image">
+                    <div style="background-image: url('/images/ninjago_movie_poster.jpg'); width:100%; height:100%; background-size:cover; background-position: center;"></div>
+                    <div class="overlay">
+                        <button class="play-btn">▶</button>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <h3>Ver Película Completa</h3>
+                    <p>HD 1080p • Audio Latino</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reproductor Estilo Serie -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-episode-title" style="border-left: 4px solid var(--accent); padding-left: 15px;">Selecciona para reproducir</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: var(--accent);"></i>
+                    <p>Pulsa en la tarjeta de arriba para iniciar la película</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; gap: 20px;">
+                <a id="btn-descarga-directa" href="https://drive.google.com/file/d/1KyPBjURAu-Lvgax1WJdmy8_xFtKPopZx/view?usp=sharing" target="_blank" class="btn-primary"><i class="fa fa-download"></i> Descargar Película</a>
+                <a href="https://youtu.be/DmCZoiCp5C0" target="_blank" class="btn-secondary"><i class="fa fa-youtube-play"></i> Ver Tráiler</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline>
+        const movieData = { 
+            id: "ninjago-movie-2017", 
+            title: "LEGO Ninjago: La Película (Completa)", 
+            driveId: "1KyPBjURAu-Lvgax1WJdmy8_xFtKPopZx" 
+        };
+
+        window.updatePlayer = function() {
+            document.getElementById('player-episode-title').innerText = 'Reproduciendo: ' + movieData.title;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${movieData.driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            
+            if (window.markAsViewed) window.markAsViewed(movieData.id);
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+</BaseLayout>

@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "Día del ninja / El camino del Ninja", driveId: "1Y963x05fyNYp8npaaXBHWt9LNHqznIbq", desc: "Los hermanos herreros Kai y Nya conocen al Maestro Wu y comienza su entrenamiento." },
+    { num: 2, title: "El rey de las sombras / Armas de Oro", driveId: "1aCZbhNIw7aw2I8S629febydd3jZ4io4p", desc: "Los ninjas deben recuperar las cuatro Armas Doradas antes que Lord Garmadon." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 0: Episodios Piloto | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp0.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #ffffff; color: black; font-weight: 800;">Pilotos</span>
+            <h1>Temporada 0: El Inicio</h1>
+            <p>Descubre cómo Kai, Jay, Cole y Zane se convirtieron en los maestros del Spinjitzu bajo la tutela del Maestro Wu para enfrentar por primera vez a Lord Garmadon.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas Inteligentes -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Episodios Piloto (2 Especiales)</h2>
+        </div>
+
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp0.jpg');`}>
+                        <div class="ep-overlay">
+                            <span class="ep-badge">PILOTO {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #ffffff; padding-left: 15px;">Selecciona el origen</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #ffffff;"></i>
+                    <p>Donde la leyenda comenzó</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #ffffff; color: black;"><i class="fa fa-download"></i> Descargar Capitulo</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `Reproduciendo: Piloto ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .episode-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .ep-thumbnail {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .ep-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .episode-card:hover .ep-overlay { opacity: 1; background: rgba(0,0,0,0.2); }
+        .ep-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            background: #ffffff;
+            color: black;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .ep-overlay i { font-size: 50px; color: white; }
+        .ep-details { padding: 20px; }
+        .ep-details h4 { font-size: 17px; margin-bottom: 8px; color: white; }
+        .ep-details p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    </style>
+</BaseLayout>

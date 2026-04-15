@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "Adiós al Mar", driveId: "1fv2XJnwDBstX264qSqYaMWLPaiiFR8IU", desc: "Un año después de perder a Nya, el equipo está disperso y el Maestro Wu intenta reunirlos." },
+    { num: 2, title: "La llamada del Hogar", driveId: "1-Xf5FoNcBTiErCsTQmC69BV9fBob1AUv", desc: "Los Ninja descubren una nueva amenaza que está robando venganstone en toda la ciudad." },
+    { num: 3, title: "La Forma de Nya", driveId: "1rx-5sDnsn73i1p4W9zYI5dnYLr32RJz6", desc: "Nya intenta encontrar una manera de recuperar su forma física y regresar con sus amigos." },
+    { num: 4, title: "Un Problema Municipal", driveId: "1xbvwJxlpiKYjobIiBQhsLWaC8-PcVRtI", desc: "Los Ninja operan fuera de la ley mientras el nuevo alcalde intenta arrestarlos." },
+    { num: 5, title: "Aliados Públicos número uno", driveId: "1muNY3h00KK2ig2_Yj1IZ6kgBuBzUwwws", desc: "El equipo debe huir de la policía mientras investigan quién está detrás del tráfico de cristales." },
+    { num: 6, title: "Una Recuperación de Oro", driveId: "1zAK7BqQzHXvAA5-ETNNN4r__exHX7tuD", desc: "Los Ninja intentan recuperar sus poderosas armas doradas antes de ser capturados." },
+    { num: 7, title: "El Alguacil", driveId: "19TmZljHDQW4mg9EqcziM_kkFphzEMVL7", desc: "Un nuevo y persistente oficial de la ley se propone atrapar a los Ninja a toda costa." },
+    { num: 8, title: "Dolor en el Sistema", driveId: "1gCgd02-ErFXhKcNsKhLX4yHCfDccsejK", desc: "Zane enfrenta un error interno mientras intenta procesar la pérdida de Nya." },
+    { num: 9, title: "El Alcalde Malvado", driveId: "15LIzRxibtxOrznTCRXD5fOgmhbmSqe9k", desc: "La política de Ninjago City se vuelve en contra de los verdaderos héroes." },
+    { num: 10, title: "Cincuenta Sombras de Cristal", driveId: "1sqq1DnWPBxEOtMH55MdqVjKjCiJH0WYy", desc: "El ejército de cristal comienza a tomar forma bajo el mando del misterioso Rey de Cristal." },
+    { num: 11, title: "La Ciudad de Cristal", driveId: "1MGgJytjp3t_3sZ9M87aGopAuPU22xp5s", desc: "Los Ninja se infiltran en la base de operaciones secreta de los villanos." },
+    { num: 12, title: "El Consejo del Rey de Cristal", driveId: "1h9kguwYit6b6gyM4RexgXIls3vzvQHLT", desc: "Viejos enemigos de temporadas pasadas se unen para formar el consejo definitivo del mal." },
+    { num: 13, title: "Prisión de Criptarium", driveId: "1QI9mklfzxWMdrshdhSqmdJLIzRaU9PFu", desc: "Los Ninja terminan encarcelados en el lugar donde están todos los villanos que derrotaron." },
+    { num: 14, title: "El Robo de la Esperanza", driveId: "1pd7njB_S2M2JNtEFaxUsXhVIW9enLBXf", desc: "La moral del equipo está en su punto más bajo mientras la ciudad cae en el caos." },
+    { num: 15, title: "El Resurgimiento de Pythor", driveId: "1DJcsiXKz-Ac7LCTNz8OnYS7KPlBWHEpY", desc: "El villano original de las serpientes regresa para servir al Rey de Cristal." },
+    { num: 16, title: "La Caída de un Héroe", driveId: "1h96FuY-ocXr1ASMzJK68IFzyhdafVA-e", desc: "Una batalla en la ciudad deja a uno de los Ninja en una situación crítica." },
+    { num: 17, title: "Un Retorno de Agua", driveId: "16PqOUdvQptLcIzJOSk4soWVWHpoHb99B", desc: "Nya finalmente logra regresar, pero sus poderes han cambiado drásticamente." },
+    { num: 18, title: "La Venganza de Harumi", driveId: "1A7TSqPdHzhivK0yMmZPI2uR54GgP2Z-i", desc: "Se revela quién ha estado guiando al Rey de Cristal desde las sombras." },
+    { num: 19, title: "La Oscuridad se Levanta", driveId: "1FshBCanvxdZb5NQRB16nMYKMaKFFx_NT", desc: "El Gran Devorador no fue el final; algo mucho peor está por llegar." },
+    { num: 20, title: "Hacia el Abismo", driveId: "1Aek1TRK7AT2WKrnvEh3AfBUXu7fZlPwT", desc: "Los Ninja deben viajar a los reinos más profundos para encontrar una solución." },
+    { num: 21, title: "El Regreso del Dragón", driveId: "1yWMNC3bOaYXaxcsN8b2qQ89eeHeHrGkK", desc: "Lloyd se enfrenta a un dilema moral que involucra su linaje familiar." },
+    { num: 22, title: "Cristalizados", driveId: "1x8eAfzzumpPvWpHpTPfYhSffzFiCAnc6", desc: "El Rey de Cristal revela su verdadera identidad y su plan maestro para los reinos." },
+    { num: 23, title: "La Última Resistencia", driveId: "1xWSRNP-dF02ASVhOihAETujDXWC5JSq_", desc: "Todos los aliados de temporadas pasadas se reúnen para defender Ninjago City." },
+    { num: 24, title: "El Poder de las Armas de Oro", driveId: "13g_MJmVOiW0G6A5swyIaJ7-S8WBSFST-", desc: "Los Ninja deben combinar sus poderes para forjar algo nunca antes visto." },
+    { num: 25, title: "El Tornado de la Creación de Cristal", driveId: "1eJUJ5ZtBWy_Cll2OJKxVwPy3o9Em7ojr", desc: "La técnica definitiva es usada en contra de los Ninja en un giro inesperado." },
+    { num: 26, title: "El Destino de un Ninja", driveId: "1uACoihXvmhKYZwD_2TuHPbQpmxctSGMg", desc: "Lloyd debe aceptar su forma de dragón para enfrentar al Rey de Cristal." },
+    { num: 27, title: "Unión de Reinos", driveId: "1fJLZaavLu7sysnElJNiQTKbyEVl5_dJU", desc: "El fin del mundo tal como lo conocen los Ninja está a punto de ocurrir." },
+    { num: 28, title: "La Caída del Maestro Wu", driveId: "132N2GQkIpriNADw9uLfF7f8iSRL_l2Qm", desc: "El mentor de los Ninja se sacrifica para darles una última oportunidad." },
+    { num: 29, title: "El Regreso de la Luz", driveId: "1JSNHl69hnAVNYSETgIwMDrdO0Wcbuh5o", desc: "La esperanza renace en el momento más oscuro de la batalla." },
+    { num: 30, title: "Fin del Viaje", driveId: "1kLR2FpClyli8vc-il1GEGVScgLK0wUec", desc: "La épica conclusión de la saga de Ninjago Masters of Spinjitzu." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 16: Crystalized | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp16.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #e67e22; color: white; border: none; font-weight: 800; box-shadow: 0 0 15px #e67e22;">LA GRAN FINAL</span>
+            <h1>Crystalized</h1>
+            <p>El Reino de Cristal se levanta. Los Ninja deben superar la pérdida, la traición y la ley para salvar al mundo de una amenaza que ha estado esperando en las sombras desde el principio. Todo ha llevado a este momento.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas Inteligentes -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 style="color: #e67e22;"><i class="fa fa-diamond"></i> El Final de la Leyenda (30)</h2>
+        </div>
+
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp16.jpg');`}>
+                        <div class="ep-overlay" style="background: rgba(0,0,0,0.4);">
+                            <span class="ep-badge" style="background: #e67e22;">CAP {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #e67e22; padding-left: 15px;">El Destino te llama...</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); flex-direction: column;">
+                    <i class="fa fa-play-circle" style="font-size: 64px; margin-bottom: 20px; color: #e67e22;"></i>
+                    <p>La batalla definitiva contra el Rey de Cristal</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.5); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #e67e22; color: white;"><i class="fa fa-download"></i> Descargar Episodio</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `REPRODUCIENDO: Ep ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+        .episode-card:hover { border-color: #e67e22; transform: scale(1.02); }
+        .ep-thumbnail { height: 130px; background-size: cover; background-position: center; position: relative; }
+        .ep-overlay { position: absolute; top:0; left:0; width:100%; height:100%; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+        .ep-badge { position: absolute; top: 10px; left: 10px; padding: 3px 8px; border-radius: 6px; font-weight: 800; font-size: 10px; }
+        .ep-details { padding: 12px; }
+        .ep-details h4 { font-size: 14px; margin: 0; color: white; text-align: center; }
+    </style>
+</BaseLayout>

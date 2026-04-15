@@ -1,0 +1,312 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Catálogo de Películas | Nexus Stream" activePage="peliculas">
+    <style>
+        /* Barra de etiquetas/filtros */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .filter-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .filter-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .filter-tag.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            box-shadow: 0 0 20px rgba(30, 144, 255, 0.4);
+        }
+
+        /* Counter de resultados */
+        .results-counter {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .results-counter span { color: var(--accent); font-weight: bold; }
+
+        /* Grid de tarjetas */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        .movie-card-item {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .movie-card-item.hidden {
+            display: none;
+        }
+
+        /* Sidebar sticky */
+        .page-sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 100px;
+        }
+        .sidebar-box {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 20px;
+        }
+        .sidebar-box h3 {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .sidebar-genre-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: 0.2s;
+        }
+        .sidebar-genre-item:hover { color: var(--accent); padding-left: 5px; }
+        .sidebar-genre-count {
+            background: rgba(255,255,255,0.05);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+    </style>
+
+    <div style="padding: 40px 0; display: flex; gap: 40px; align-items: flex-start;">
+        
+        <!-- Contenido Principal -->
+        <section style="flex: 1; min-width: 0;">
+            <div style="margin-bottom: 30px;">
+                <h1 style="font-size: 32px; border-left: 5px solid var(--accent); padding-left: 20px; margin-bottom: 5px;">Catálogo de Películas</h1>
+                <p style="color: var(--text-secondary); padding-left: 25px;">Filtra por género para encontrar tu próxima película favorita</p>
+            </div>
+
+            <!-- Barra de Etiquetas/Filtros -->
+            <div class="filter-bar">
+                <button class="filter-tag active" data-filter="all">🎬 Todas</button>
+                <button class="filter-tag" data-filter="accion">⚡ Acción</button>
+                <button class="filter-tag" data-filter="aventura">🗺️ Aventura</button>
+                <button class="filter-tag" data-filter="sci-fi">🚀 Sci-Fi</button>
+                <button class="filter-tag" data-filter="crimen">🕵️ Crimen</button>
+                <button class="filter-tag" data-filter="drama">🎭 Drama</button>
+                <button class="filter-tag" data-filter="animacion">✨ Animación</button>
+                <button class="filter-tag" data-filter="comedia">😂 Comedia</button>
+            </div>
+
+            <p class="results-counter">Mostrando <span id="count">5</span> películas</p>
+
+            <!-- Grid de Películas -->
+            <div class="movies-grid" id="movies-grid">
+
+                <!-- Batman -->
+                <div class="movie-card-item" data-genres="accion,crimen,drama">
+                    <div class="card" onclick="window.location.href='/batman-caballero-noche-2008'">
+                        <div class="fav-btn" data-id="pelicula-batman-2008" data-title="Batman" data-img="/images/batman_poster.jpg" data-url="/batman-caballero-noche-2008"><i class="fa fa-heart"></i></div>
+                        <div class="card-image" style="background-image: url('/images/batman_poster.jpg'); background-size: cover; background-position: center; height: 300px;">
+                            <div class="overlay"><button class="play-btn">▶</button></div>
+                        </div>
+                        <div class="card-info">
+                            <h3 style="font-size: 14px;">Batman: El Caballero de la Noche</h3>
+                            <p>2008 • Acción</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avengers (Próximamente) -->
+                <div class="movie-card-item" data-genres="accion,sci-fi,aventura">
+                    <div class="card disabled" style="opacity: 0.6; cursor: not-allowed; filter: grayscale(0.5);">
+                        <div class="fav-btn" data-id="pelicula-avengers-2019" data-title="Avengers: Endgame" data-img="https://image.tmdb.org/t/p/w500/or06vS3nBjnvK67Cc9pB6pB779d.jpg" data-url="#"><i class="fa fa-heart"></i></div>
+                        <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/or06vS3nBjnvK67Cc9pB6pB779d.jpg'); background-size: cover; background-position: center top; height: 300px;">
+                            <div class="overlay" style="background: rgba(0,0,0,0.4);"><span class="badge" style="background: #6c757d; color: white; position: absolute; top: 10px; right: 10px;">PROXIMAMENTE</span></div>
+                        </div>
+                        <div class="card-info">
+                            <h3 style="font-size: 14px;">Avengers: Endgame</h3>
+                            <p>2019 • Acción</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spider-Man -->
+                <div class="movie-card-item" data-genres="accion,sci-fi,aventura">
+                    <div class="card" onclick="window.location.href='/el-hombre-arana-2002'">
+                        <div class="fav-btn" data-id="pelicula-spiderman-2002" data-title="El Hombre Araña" data-img="https://image.tmdb.org/t/p/w500/mVOCqKvJZvpA1oXPk35OLBsgcPF.jpg" data-url="/el-hombre-arana-2002"><i class="fa fa-heart"></i></div>
+                        <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/mVOCqKvJZvpA1oXPk35OLBsgcPF.jpg'); background-size: cover; background-position: center; height: 300px;">
+                            <div class="overlay"><button class="play-btn">▶</button></div>
+                        </div>
+                        <div class="card-info">
+                            <h3 style="font-size: 14px;">El Hombre Araña</h3>
+                            <p>2002 • Acción</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rápido y Furioso -->
+                <div class="movie-card-item" data-genres="accion,crimen,aventura">
+                    <div class="card" onclick="window.location.href='/rapido-y-furioso-2001'">
+                        <div class="fav-btn" data-id="pelicula-rapido-2001" data-title="Rápido y Furioso" data-img="https://image.tmdb.org/t/p/w500/zFR949B0hxdgi0vljf8tCJiZ65z.jpg" data-url="/rapido-y-furioso-2001"><i class="fa fa-heart"></i></div>
+                        <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/zFR949B0hxdgi0vljf8tCJiZ65z.jpg'); background-size: cover; background-position: center; height: 300px;">
+                            <div class="overlay"><button class="play-btn">▶</button></div>
+                        </div>
+                        <div class="card-info">
+                            <h3 style="font-size: 14px;">Rápido y Furioso</h3>
+                            <p>2001 • Acción</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEGO Ninjago Movie -->
+                <div class="movie-card-item" data-genres="animacion,accion,comedia,aventura">
+                    <div class="card" onclick="window.location.href='/ninjago-movie-2017'">
+                        <div class="fav-btn" data-id="ninjago-movie-2017" data-title="LEGO Ninjago: La película" data-img="/images/ninjago_movie_poster.png" data-url="/ninjago-movie-2017"><i class="fa fa-heart"></i></div>
+                        <div class="card-image" style="background-image: url('/images/ninjago_movie_poster.png'); background-size: cover; background-position: center; height: 300px;">
+                            <div class="overlay"><button class="play-btn">▶</button></div>
+                        </div>
+                        <div class="card-info">
+                            <h3>LEGO Ninjago: La película</h3>
+                            <p>2017 • Animación</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mario Bros -->
+                <div class="movie-card-item" data-genres="animacion,comedia,aventura">
+                    <div class="card" onclick="window.location.href='/mario-bros-2023'">
+                        <div class="fav-btn" data-id="pelicula-mario-2023" data-title="Super Mario Bros. La película" data-img="https://image.tmdb.org/t/p/w500/zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg" data-url="/mario-bros-2023"><i class="fa fa-heart"></i></div>
+                        <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/zNKs1T0VZuJiVuhuL5GSCNkGdxf.jpg'); background-size: cover; background-position: center; height: 300px;">
+                            <div class="overlay"><button class="play-btn">▶</button></div>
+                        </div>
+                        <div class="card-info">
+                            <h3 style="font-size: 14px;">Super Mario Bros. La película</h3>
+                            <p>2023 • Animación</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Mensaje sin resultados -->
+            <div id="no-results" style="display:none; text-align: center; padding: 60px 20px; color: var(--text-secondary);">
+                <i class="fa fa-search" style="font-size: 48px; margin-bottom: 20px; opacity: 0.3;"></i>
+                <p style="font-size: 18px;">No hay películas en este género aún.</p>
+                <p style="font-size: 14px; margin-top: 10px;">¡Pronto agregaremos más!</p>
+            </div>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="page-sidebar">
+            <div class="sidebar-box">
+                <h3>🏷️ Géneros</h3>
+                <div class="sidebar-genre-item" onclick="filterByGenre('accion')">
+                    <span>Acción</span><span class="sidebar-genre-count">4</span>
+                </div>
+                <div class="sidebar-genre-item" onclick="filterByGenre('sci-fi')">
+                    <span>Sci-Fi</span><span class="sidebar-genre-count">2</span>
+                </div>
+                <div class="sidebar-genre-item" onclick="filterByGenre('crimen')">
+                    <span>Crimen</span><span class="sidebar-genre-count">2</span>
+                </div>
+                <div class="sidebar-genre-item" onclick="filterByGenre('aventura')">
+                    <span>Aventura</span><span class="sidebar-genre-count">4</span>
+                </div>
+                <div class="sidebar-genre-item" onclick="filterByGenre('animacion')">
+                    <span>Animación</span><span class="sidebar-genre-count">1</span>
+                </div>
+                <div class="sidebar-genre-item" onclick="filterByGenre('comedia')">
+                    <span>Comedia</span><span class="sidebar-genre-count">1</span>
+                </div>
+                <div class="sidebar-genre-item" onclick="filterByGenre('drama')">
+                    <span>Drama</span><span class="sidebar-genre-count">1</span>
+                </div>
+            </div>
+
+            <div class="sidebar-box">
+                <h3>📊 Estadísticas</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-secondary);">Total películas</span>
+                        <span style="color: var(--accent); font-weight: bold;">5</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-secondary);">Géneros</span>
+                        <span style="color: var(--accent); font-weight: bold;">6</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-box" style="text-align: center; border: 1px dashed var(--accent);">
+                <p style="font-size: 11px; color: var(--text-secondary); margin-bottom: 10px;">PUBLICIDAD</p>
+                <div style="height: 200px; display: flex; align-items: center; justify-content: center; opacity: 0.4;">
+                    [ Banner 260x200 ]
+                </div>
+            </div>
+        </aside>
+    </div>
+</BaseLayout>
+
+<script is:inline>
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const movieItems = document.querySelectorAll('.movie-card-item');
+    const countEl = document.getElementById('count');
+    const noResults = document.getElementById('no-results');
+
+    function filterMovies(genre) {
+        let visible = 0;
+        movieItems.forEach(item => {
+            const genres = item.dataset.genres.split(',');
+            if (genre === 'all' || genres.includes(genre)) {
+                item.classList.remove('hidden');
+                visible++;
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+        countEl.textContent = visible;
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    filterTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            filterTags.forEach(t => t.classList.remove('active'));
+            tag.classList.add('active');
+            filterMovies(tag.dataset.filter);
+        });
+    });
+
+    window.filterByGenre = function(genre) {
+        filterTags.forEach(t => {
+            t.classList.remove('active');
+            if (t.dataset.filter === genre) t.classList.add('active');
+        });
+        filterMovies(genre);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+</script>

@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const episodes = [
+    { num: 1, title: "¿Quieres entrar en Prime Empire?", driveId: "1SO1iDeR7X-CbV3wCElSFKkt5AgNPuZjo", desc: "Un antiguo y peligroso videojuego legendario aparece de repente en Ninjago City." },
+    { num: 2, title: "Dyer la Isla del Terror", driveId: "1B0gTegvQM3nAB9nKbMWRq_NGCb2oxDca", desc: "Los Ninja investigan el origen del juego y buscan a su misterioso creador." },
+    { num: 3, title: "Nivel Trece", driveId: "1fWbe9qJCBY_I22dzmk3AUV6Er8GS2JUx", desc: "Jay es absorbido por el juego y los otros Ninja deben seguirlo para rescatarlo." },
+    { num: 4, title: "Superestrella Rockin' Jay", driveId: "1H9LzBBHP_tXtAp3eTHAkye_pWieUFr6_", desc: "Jay se convierte en una celebridad dentro del mundo digital de Prime Empire." },
+    { num: 5, title: "Soy Okino", driveId: "1p2ePFMCHO7xywvB5uNRmVNb-dJgNYzWO", desc: "Los Ninja conocen a un samurái digital que ha perdido su propósito." },
+    { num: 6, title: "El Glitch", driveId: "1oD3dcXxeFZ2GUZS3I-JYnB3HzBHFFi_d", desc: "Un error en el sistema revela secretos sobre el funcionamiento del mundo digital." },
+    { num: 7, title: "Los Riscos de la Histeria", driveId: "1G8HcZGZjDtdbvIxST4wa33eMKgGPUxNe", desc: "El equipo debe superar peligrosos desafíos de plataformas para avanzar de nivel." },
+    { num: 8, title: "Un Paso Adelante, Dos Atrás", driveId: "1Z-YzSQ3I9S7b6I4S8H-AhKi-rpbCg6BI", desc: "Las trampas de Unagami ponen a prueba la paciencia y habilidad de los Ninja." },
+    { num: 9, title: "Un Uno-Uno de lo que sea", driveId: "1WuajfZPGTBcjnWQ64hRN9my7Uxs6y2eb", desc: "Lloyd se enfrenta a un duelo decisivo mientras los demás buscan la llave." },
+    { num: 10, title: "El Laberinto del Dragón Rojo", driveId: "17DspSmZOAedPqb0fYnBj6BmIcjiEJzBo", desc: "Los Ninja deben navegar por un complejo laberinto para encontrar al Gran Dragón." },
+    { num: 11, title: "Racer Seven", driveId: "1A3zs6JGKZcOGhJUKwBCk6wJQYXnYB32t", desc: "Una carrera de alta velocidad determinará quién obtiene la siguiente Key-tana." },
+    { num: 12, title: "Terra Domina", driveId: "1e6FAIhRAeRf0kJ8paV_vhGGEdSfryo4m", desc: "El penúltimo nivel del juego lleva a los Ninja al límite de sus capacidades." },
+    { num: 13, title: "Detengan el Juego", driveId: "1aP5mPi0s4nyG9swkG392mH309y2jW4tz", desc: "Zane intenta hackear el sistema desde el exterior mientras los demás luchan dentro." },
+    { num: 14, title: "Dyer el Maestro del Juego", driveId: "1CgJpVcyURN1-8EhOTmRWffUwi1eJVEiO", desc: "Se revela la verdad sobre Milton Dyer y su conexión con Unagami." },
+    { num: 15, title: "El Templo de la Locura", driveId: "1HJAfKXcJ8FQRA7ueQvz9fesu57ZlFp6X", desc: "La batalla final en el corazón del imperio digital comienza." },
+    { num: 16, title: "Game Over", driveId: "1yCt8kue9DoMKDJXVZG5CC0Mq0cLAuovk", desc: "Jay debe convencer a Unagami de que el perdón es mejor que la venganza." }
+];
+---
+
+<BaseLayout title="Ninjago Temporada 12: Prime Empire | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.4)), url('/images/ninjago_temp12.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge" style="background: #00d2ff; color: #0a0a0f; border: none; font-weight: 900;">LEVEL 12</span>
+            <h1>Prime Empire</h1>
+            <p>¡El juego ha comenzado! Los Ninja deben entrar en el mundo digital de Unagami para rescatar a los jugadores desaparecidos. En un lugar donde solo tienes tres vidas, cada decisión cuenta.</p>
+        </div>
+    </section>
+
+    <!-- Lista de Episodios con Portadas Inteligentes -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2 style="color: #00d2ff;"><i class="fa fa-gamepad"></i> Misiones Digitales (16)</h2>
+        </div>
+
+        <div class="grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+            {episodes.map((ep) => (
+                <div class="episode-card" onclick={`updatePlayer(${ep.num-1}, '${ep.title}', '${ep.driveId}')`}>
+                    <div class="ep-thumbnail" style={`background-image: url('/images/ninjago_temp12.jpg');`}>
+                        <div class="ep-overlay" style="background: rgba(0, 210, 255, 0.2);">
+                            <span class="ep-badge" style="background: #00d2ff; color: #000;">NIVEL {ep.num}</span>
+                            <i class="fa fa-play-circle"></i>
+                        </div>
+                    </div>
+                    <div class="ep-details">
+                        <h4>{ep.title}</h4>
+                        <p>{ep.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Reproductor -->
+    <section class="content-section" id="player" style="padding-top: 0;">
+        <div class="section-header">
+            <h2 id="player-title" style="border-left: 4px solid #00d2ff; padding-left: 15px;">Iniciando Sistema...</h2>
+        </div>
+        <div class="player-container" style="background: var(--bg-card); border-radius: 24px; overflow: hidden; border: 1px solid #00d2ff66; box-shadow: 0 0 40px rgba(0, 210, 255, 0.2);">
+            <div id="video-wrapper" class="video-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #00d2ff; flex-direction: column; font-family: 'Courier New', monospace;">
+                    <i class="fa fa-cog fa-spin" style="font-size: 64px; margin-bottom: 20px;"></i>
+                    <p>INSERT COIN TO PLAY</p>
+                </div>
+            </div>
+            <div class="series-controls" style="padding: 20px; background: rgba(0,0,0,0.8); display: flex; justify-content: center; gap: 20px;">
+                <a id="download-link" href="#" target="_blank" class="btn-primary" style="background: #00d2ff; color: #000; font-weight: 800;"><i class="fa fa-download"></i> OBTENER KEY-TANA (Descargar)</a>
+            </div>
+        </div>
+    </section>
+
+    <script is:inline define:vars={{ episodes }}>
+        window.updatePlayer = function(index, title, driveId) {
+            document.getElementById('player-title').innerText = `JUGANDO: Nivel ${index + 1} - ${title}`;
+            document.getElementById('video-wrapper').innerHTML = `<iframe src="https://drive.google.com/file/d/${driveId}/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>`;
+            document.getElementById('download-link').href = `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+            
+            if (window.trackVideoView) window.trackVideoView();
+            window.scrollTo({ top: document.getElementById('player').offsetTop - 100, behavior: 'smooth' });
+        }
+    </script>
+
+    <style>
+        .episode-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .episode-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d2ff;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
+        }
+        .ep-thumbnail {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .ep-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .episode-card:hover .ep-overlay { opacity: 1; background: rgba(0,0,0,0.1) !important; }
+        .ep-badge {
+            position: absolute;
+            top: 10px; left: 10px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .ep-overlay i { font-size: 40px; color: white; text-shadow: 0 0 10px #00d2ff; }
+        .ep-details { padding: 15px; }
+        .ep-details h4 { font-size: 15px; margin-bottom: 5px; color: white; }
+        .ep-details p { font-size: 12px; color: var(--text-secondary); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+</BaseLayout>

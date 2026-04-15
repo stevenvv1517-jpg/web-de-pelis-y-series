@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Ninjago: Maestros del Spinjitzu | Nexus Stream" activePage="series">
+    <!-- Hero Section -->
+    <section class="hero" style="background: linear-gradient(to right, rgba(10, 10, 15, 0.9), rgba(10, 10, 15, 0.3)), url('/images/ninjago_hero.jpg') center/cover;">
+        <div class="hero-content">
+            <span class="badge">Serie Completa</span>
+            <h1>LEGO Ninjago</h1>
+            <p>Sigue las aventuras de los maestros del Spinjitzu desde sus humildes comienzos hasta las épicas batallas por el destino de los reinos.</p>
+        </div>
+    </section>
+
+    <!-- Catálogo de Temporadas -->
+    <section class="content-section">
+        <div class="section-header">
+            <h2>Cronología de Ninjago</h2>
+        </div>
+
+        <div class="grid-container">
+            <!-- Portada Temp 0 (Pilotos) -->
+            <div class="card" onclick="window.location.href='/temporada0'" style="cursor: pointer; border: 2px solid #ffffff; border-radius: 20px;">
+                <div class="fav-btn" data-id="ninjago-temp0" data-title="Día del Ninja (Temporada 0)" data-img="/images/ninjago_temp0.jpg" data-url="/temporada0"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('/images/ninjago_temp0.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="background: white; color: black; padding: 10px 20px; border-radius: 20px; font-weight: bold;">VER PILOTOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #ffffff;">
+                    DÍA DEL NINJA (TEMPORADA 0)
+                </div>
+            </div>
+
+            <!-- Portada Temp 1 -->
+            <div class="card" onclick="window.location.href='/temporada1'" style="cursor: pointer;">
+                <div class="fav-btn" data-id="ninjago-temp1" data-title="El Ascenso de las Serpientes (Temporada 1)" data-img="/images/ninjago_temp1.jpg" data-url="/temporada1"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('/images/ninjago_temp1.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid white; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #2ecc71;">
+                    EL ASCENSO DE LAS SERPIENTES (TEMPORADA 1)
+                </div>
+            </div>
+
+            <!-- Portada Temp 2 -->
+            <div class="card" onclick="window.location.href='/temporada2'" style="cursor: pointer;">
+                <div class="fav-btn" data-id="ninjago-temp2" data-title="El Legado del Ninja Verde (Temporada 2)" data-img="/images/ninjago_temp2.jpg" data-url="/temporada2"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('/images/ninjago_temp2.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid white; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #f1c40f;">
+                    EL LEGADO DEL NINJA VERDE (TEMPORADA 2)
+                </div>
+            </div>
+
+            <!-- Portada Temp 3 -->
+            <div class="card" onclick="window.location.href='/temporada3'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp3.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid white; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #00d2ff;">
+                    REINICIO (TEMPORADA 3)
+                </div>
+            </div>
+
+            <!-- Portada Temp 4 -->
+            <div class="card" onclick="window.location.href='/temporada4'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp4.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid white; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #e67e22;">
+                    TORNEO DE LOS ELEMENTOS (TEMPORADA 4)
+                </div>
+            </div>
+
+            <!-- Portada Temp 5 -->
+            <div class="card" onclick="window.location.href='/temporada5'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp5_full.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid white; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #a0ffe3;">
+                    POSESIÓN (TEMPORADA 5)
+                </div>
+            </div>
+
+            <!-- Portada Temp 6 -->
+            <div class="card" onclick="window.location.href='/temporada6'" style="cursor: pointer;">
+                <div class="fav-btn" data-id="ninjago-temp6" data-title="Skybound (Temporada 6)" data-img="https://lh3.googleusercontent.com/sitesv/AA5AbUA3Oyr0fon6E3nY5MjOtGDGYV6Tq8fIZvcbcw5LvaQkWYfxhttCt3feA4zMRO0FQSpGKs-N4XuTFAX7dGvWMptzRV0R0cTrBl0Zc9N3x-KVU5vsLpMdLhL6lQqLlPWxBgTLsS0Jmp0J6p9PCAWaLac_BnR8gNwM1qjhHLlCRmVWwCIXMsnfaIJ918kA80JFHDLvuuLgteQHB-4nTyYOscp1NJiaX5d-H3XuLc0=w1280" data-url="/temporada6"><i class="fa fa-heart"></i></div>
+                <div class="card-image" style="background-image: url('https://lh3.googleusercontent.com/sitesv/AA5AbUA3Oyr0fon6E3nY5MjOtGDGYV6Tq8fIZvcbcw5LvaQkWYfxhttCt3feA4zMRO0FQSpGKs-N4XuTFAX7dGvWMptzRV0R0cTrBl0Zc9N3x-KVU5vsLpMdLhL6lQqLlPWxBgTLsS0Jmp0J6p9PCAWaLac_BnR8gNwM1qjhHLlCRmVWwCIXMsnfaIJ918kA80JFHDLvuuLgteQHB-4nTyYOscp1NJiaX5d-H3XuLc0=w1280'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid white; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #ff9f43;">
+                    SKYBOUND (TEMPORADA 6)
+                </div>
+            </div>
+
+            <!-- Especial Día de los Difuntos -->
+            <div class="card" onclick="window.location.href='/especial-difuntos'" style="cursor: pointer; border: 2px solid #ffc107; border-radius: 20px;">
+                <div class="card-image" style="background-image: url('/images/especial_difuntos.png'); height: 350px;">
+                    <div class="overlay">
+                        <span style="background: #ffc107; color: black; padding: 10px 20px; border-radius: 20px; font-weight: bold;">VER ESPECIAL</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #ffc107;">
+                    DÍA DE LOS DIFUNTOS (ESPECIAL)
+                </div>
+            </div>
+
+            <!-- Portada Temp 7 -->
+            <div class="card" onclick="window.location.href='/temporada7'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp7.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid white; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #cd7f32;">
+                    MANECILLAS DEL TIEMPO (TEMPORADA 7)
+                </div>
+            </div>
+
+            <!-- Temporada 8 -->
+            <div class="card" onclick="window.location.href='/temporada8'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp8.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #6c5ce7; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #6c5ce7;">
+                    HIJOS DE GARMADON (TEMPORADA 8)
+                </div>
+            </div>
+
+            <!-- Temporada 9 -->
+            <div class="card" onclick="window.location.href='/temporada9'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp9.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #e74c3c; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #e74c3c;">
+                    CACERÍA (TEMPORADA 9)
+                </div>
+            </div>
+
+            <!-- Temporada 10 -->
+            <div class="card" onclick="window.location.href='/temporada10'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp10.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #a29bfe; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #a29bfe;">
+                    MARCHA ONI (TEMPORADA 10)
+                </div>
+            </div>
+
+            <!-- Temporada 11 -->
+            <div class="card" onclick="window.location.href='/temporada11'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp11.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #ff7675; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #ff7675;">
+                    SPINJITZU PROHIBIDO (TEMPORADA 11)
+                </div>
+            </div>
+
+            <!-- Temporada 12 -->
+            <div class="card" onclick="window.location.href='/temporada12'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp12.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #00d2ff; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #00d2ff;">
+                    PRIME EMPIRE (TEMPORADA 12)
+                </div>
+            </div>
+
+            <!-- Temporada 13 -->
+            <div class="card" onclick="window.location.href='/temporada13'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp13.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #e67e22; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #e67e22;">
+                    MASTER OF THE MOUNTAIN (TEMPORADA 13)
+                </div>
+            </div>
+
+            <!-- Temporada 14 -->
+            <div class="card" onclick="window.location.href='/temporada14'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp14.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #a29bfe; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #a29bfe;">
+                    THE ISLAND (TEMPORADA 14)
+                </div>
+            </div>
+
+            <!-- Temporada 15 -->
+            <div class="card" onclick="window.location.href='/temporada15'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp15.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #00cec9; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #00cec9;">
+                    SEABOUND (TEMPORADA 15)
+                </div>
+            </div>
+
+            <!-- Temporada 16 -->
+            <div class="card" onclick="window.location.href='/temporada16'" style="cursor: pointer;">
+                <div class="card-image" style="background-image: url('/images/ninjago_temp16.jpg'); height: 350px;">
+                    <div class="overlay">
+                        <span style="border: 2px solid #fdcb6e; padding: 10px 20px; border-radius: 20px; color: white; font-weight: bold;">VER CAPÍTULOS</span>
+                    </div>
+                </div>
+                <div class="season-title" style="color: #fdcb6e;">
+                    CRYSTALIZED (TEMPORADA 16)
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        .season-title {
+            padding: 15px;
+            font-size: 13px;
+            font-weight: 800;
+            text-align: center;
+            background: rgba(255,255,255,0.02);
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .card:hover .season-title {
+            background: rgba(255,255,255,0.05);
+        }
+    </style>
+</BaseLayout>
