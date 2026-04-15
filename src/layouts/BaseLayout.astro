@@ -12,8 +12,7 @@ import '../styles/style.css';
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" href="/images/nexus_stream_logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Adsterra: Ventana Emergente (Popunder) -->
-    <script src="https://pl29155895.profitablecpmratenetwork.com/0e/07/32/0e0732e0aa56212e2edde854fbcb8529.js"></script>
+    <!-- Adsterra scripts will be placed at the end of body for better performance/reliability -->
 </head>
 <body>
     <header class="navbar">
@@ -29,7 +28,7 @@ import '../styles/style.css';
         </nav>
         <div class="search-container" style="position: relative;">
             <input id="search-input" type="text" placeholder="Buscar..." style="background:transparent; border:none; color:white; outline:none; padding:5px; width:120px;" />
-            <button style="background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-size:16px;">🔍</button>
+            <button id="search-btn" style="background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-size:16px;">🔍</button>
             <div id="search-results" class="search-results-dropdown"></div>
         </div>
     </header>
@@ -192,6 +191,12 @@ import '../styles/style.css';
                 window.location.href = url;
             });
         }, true);
+        // Lupa click focus
+        document.getElementById('search-btn')?.addEventListener('click', () => {
+            document.getElementById('search-input')?.focus();
+        });
     </script>
+    <!-- Adsterra: Ventana Emergente (Popunder) -->
+    <script src="https://pl29155895.profitablecpmratenetwork.com/0e/07/32/0e0732e0aa56212e2edde854fbcb8529.js"></script>
 </body>
 </html>

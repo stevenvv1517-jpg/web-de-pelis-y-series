@@ -32,8 +32,9 @@ body {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     backdrop-filter: blur(10px);
+    overflow: visible;
 }
 
 .logo {
@@ -557,12 +558,14 @@ footer {
 
     /* Secciones de contenido */
     .content-section {
-        padding: 20px 15px;
+        padding: 40px 15px;
+        margin-top: 20px;
     }
     .section-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 12px;
+        margin-bottom: 25px;
     }
 
     /* Botón favorito más grande en móvil */
@@ -621,7 +624,7 @@ footer {
     max-height: 500px;
     overflow-y: auto;
     display: none;
-    z-index: 1000;
+    z-index: 2000;
 }
 
 .search-results-dropdown.active {
