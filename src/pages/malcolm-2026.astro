@@ -233,8 +233,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         document.getElementById('next-btn').disabled = (currentIdx >= episodes.length - 1);
     }
 
-    document.getElementById('prev-btn').onclick = () => playEpisode(currentIdx - 1);
-    document.getElementById('next-btn').onclick = () => playEpisode(currentIdx + 1);
+    document.getElementById('prev-btn').onclick = () => {
+        if (currentIdx <= 0) return;
+        window.__showInterstitial(() => playEpisode(currentIdx - 1));
+    };
+    document.getElementById('next-btn').onclick = () => {
+        if (currentIdx >= episodes.length - 1) return;
+        window.__showInterstitial(() => playEpisode(currentIdx + 1));
+    };
 
     // Auto-Carga
     window.addEventListener('DOMContentLoaded', () => {

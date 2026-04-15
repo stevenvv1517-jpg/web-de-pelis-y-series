@@ -46,6 +46,39 @@ import '../styles/style.css';
         </p>
     </footer>
 
+    <!-- ===== INTERSTICIAL DE ANUNCIO GLOBAL ===== -->
+    <div id="ad-interstitial" style="
+        display: none; position: fixed; inset: 0; z-index: 99999;
+        background: rgba(5,5,15,0.97); backdrop-filter: blur(10px);
+        flex-direction: column; align-items: center; justify-content: center;
+        font-family: 'Outfit', sans-serif;
+    ">
+        <div style="text-align: center; max-width: 600px; padding: 30px;">
+            <p style="color: rgba(255,255,255,0.4); font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;">Patrocinado por</p>
+            <!-- Espacio del anuncio nativo dentro del intersticial -->
+            <div style="min-height: 120px; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; margin-bottom: 30px; overflow:hidden;" id="ad-interstitial-slot">
+                <p style="color: rgba(255,255,255,0.2);">Anuncio</p>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                <div id="ad-countdown" style="
+                    width: 60px; height: 60px; border-radius: 50%;
+                    border: 3px solid var(--accent, #1e90ff);
+                    display: flex; align-items: center; justify-content: center;
+                    font-size: 24px; font-weight: 800; color: white;
+                ">5</div>
+                <div>
+                    <p style="color: white; font-size: 18px; font-weight: 600; margin: 0;">Cargando contenido...</p>
+                    <p style="color: rgba(255,255,255,0.4); font-size: 13px; margin: 5px 0 0;">El contenido cargará automáticamente</p>
+                </div>
+            </div>
+            <button id="ad-skip-btn" onclick="window.__adSkip()" style="
+                display: none; margin-top: 25px; background: rgba(255,255,255,0.08);
+                border: 1px solid rgba(255,255,255,0.15); color: white; padding: 10px 30px;
+                border-radius: 30px; cursor: pointer; font-size: 14px; transition: 0.2s;
+            ">Saltar anuncio →</button>
+        </div>
+    </div>
+
     <script is:inline>
         document.getElementById('admin-trigger').addEventListener('dblclick', () => {
             const pass = prompt("Acceso de Administrador. Ingrese clave:");
@@ -106,5 +139,59 @@ import '../styles/style.css';
     <script is:inline src="/script.js"></script>
     <!-- Adsterra: Bar Social -->
     <script src="https://pl29155894.profitablecpmratenetwork.com/67/d6/10/67d610375ac0c428a2717ef95fc12fe0.js"></script>
+
+    <script is:inline>
+        // ===== SISTEMA DE INTERSTICIAL =====
+        window.__showInterstitial = function(callback) {
+            const overlay = document.getElementById('ad-interstitial');
+            const countdownEl = document.getElementById('ad-countdown');
+            const skipBtn = document.getElementById('ad-skip-btn');
+
+            overlay.style.display = 'flex';
+            let seconds = 5;
+            countdownEl.textContent = seconds;
+            skipBtn.style.display = 'none';
+
+            const interval = setInterval(() => {
+                seconds--;
+                countdownEl.textContent = seconds;
+                if (seconds <= 3) skipBtn.style.display = 'inline-block';
+                if (seconds <= 0) {
+                    clearInterval(interval);
+                    overlay.style.display = 'none';
+                    callback();
+                }
+            }, 1000);
+
+            window.__adSkip = function() {
+                clearInterval(interval);
+                overlay.style.display = 'none';
+                callback();
+            };
+        };
+
+        // Interceptar clicks en cards para mostrar intersticial antes de navegar
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.fav-btn')) return;
+            if (e.target.closest('.play-btn')) return;
+
+            const card = e.target.closest('.card:not(.disabled)');
+            if (!card) return;
+
+            const onclickAttr = card.getAttribute('onclick');
+            if (!onclickAttr || !onclickAttr.includes('location')) return;
+
+            e.preventDefault();
+            e.stopImmediatePropagation();
+
+            const match = onclickAttr.match(/href='([^']+)'/);
+            if (!match) return;
+            const url = match[1];
+
+            window.__showInterstitial(() => {
+                window.location.href = url;
+            });
+        }, true);
+    </script>
 </body>
 </html>
