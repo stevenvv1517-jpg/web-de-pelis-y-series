@@ -147,12 +147,6 @@ import '../styles/style.css';
             const countdownEl = document.getElementById('ad-countdown');
             const skipBtn = document.getElementById('ad-skip-btn');
 
-            // Disparar ventana emergente de Adsterra
-            const popScript = document.createElement('script');
-            popScript.src = 'https://pl29155895.profitablecpmratenetwork.com/0e/07/32/0e0732e0aa56212e2edde854fbcb8529.js';
-            document.body.appendChild(popScript);
-            setTimeout(() => { try { popScript.remove(); } catch(e){} }, 3000);
-
             overlay.style.display = 'flex';
             let seconds = 5;
             countdownEl.textContent = seconds;
@@ -165,14 +159,14 @@ import '../styles/style.css';
                 if (seconds <= 0) {
                     clearInterval(interval);
                     overlay.style.display = 'none';
-                    callback();
+                    setTimeout(callback, 50);
                 }
             }, 1000);
 
             window.__adSkip = function() {
                 clearInterval(interval);
                 overlay.style.display = 'none';
-                callback();
+                setTimeout(callback, 50);
             };
         };
 
