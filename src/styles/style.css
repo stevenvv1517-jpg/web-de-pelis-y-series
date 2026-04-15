@@ -612,7 +612,7 @@ footer {
     top: 100%;
     right: 0;
     width: 350px;
-    background: var(--glass-bg);
+    background: var(--bg-card);
     backdrop-filter: blur(25px);
     border: 1px solid var(--glass-border);
     border-radius: 16px;
@@ -622,6 +622,10 @@ footer {
     overflow-y: auto;
     display: none;
     z-index: 1000;
+}
+
+.search-results-dropdown.active {
+    display: block;
 }
 
 .search-item {

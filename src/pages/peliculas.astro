@@ -99,9 +99,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             font-size: 11px;
             color: var(--text-secondary);
         }
+        .peliculas-container {
+            padding: 40px 5%;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 900px) {
+            .peliculas-container {
+                flex-direction: column;
+                padding: 20px 15px;
+            }
+            .page-sidebar {
+                width: 100%;
+                position: relative;
+                top: 0;
+                order: 2;
+            }
+            .movies-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .movie-card-item .card-image {
+                height: 220px !important;
+            }
+        }
     </style>
 
-    <div style="padding: 40px 0; display: flex; gap: 40px; align-items: flex-start;">
+    <div class="peliculas-container">
         
         <!-- Contenido Principal -->
         <section style="flex: 1; min-width: 0;">
