@@ -96,7 +96,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <a href="javascript:void(0)" id="btn-3"><i class="fa fa-youtube-play"></i> Trailer</a>
             </div>
             <div class="player-box">
-                <iframe id="main-iframe" class="player_conte" src="/api/proxy?id=155" allowfullscreen></iframe>
+                <iframe id="main-iframe" class="player_conte" src="https://unlimplay.com/play/embed/movie/155" sandbox="allow-scripts allow-same-origin allow-presentation" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -130,11 +130,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const b3 = document.getElementById('btn-3');
 
     b1.onclick = () => {
-        iframe.src = "/api/proxy?id=155";
+        iframe.src = "https://unlimplay.com/play/embed/movie/155";
         setActive(b1);
     };
     b2.onclick = () => {
-        iframe.src = "/api/proxy?id=155";
+        iframe.src = "https://unlimplay.com/play/embed/movie/155";
         setActive(b2);
     };
     b3.onclick = () => {
