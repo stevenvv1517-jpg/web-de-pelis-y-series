@@ -96,7 +96,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <a href="javascript:void(0)" id="btn-3"><i class="fa fa-youtube-play"></i> Trailer</a>
             </div>
             <div class="player-box">
-                <iframe id="main-iframe" class="player_conte" src="https://drive.google.com/file/d/17TUslxBjW2KBdR0TPEnrwz4F3pZjcf7o/preview" allowfullscreen></iframe>
+                <iframe id="main-iframe" class="player_conte" src="https://unlimplay.com/play/embed/movie/155" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -130,12 +130,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const b3 = document.getElementById('btn-3');
 
     b1.onclick = () => {
-        iframe.src = "https://drive.google.com/file/d/17TUslxBjW2KBdR0TPEnrwz4F3pZjcf7o/preview";
+        iframe.src = "https://unlimplay.com/play/embed/movie/155";
         setActive(b1);
     };
     b2.onclick = () => {
-        // Aquí puedes poner el link de reproducción de Mega
-        iframe.src = "https://mega.nz/embed/#!placeholder_id"; 
+        iframe.src = "https://unlimplay.com/play/embed/movie/155";
         setActive(b2);
     };
     b3.onclick = () => {
