@@ -16,3 +16,4 @@ Thumbs.db
 .env.development
 *.mkv
 *.mp4
+.vercel

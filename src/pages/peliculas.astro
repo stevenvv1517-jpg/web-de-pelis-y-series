@@ -148,7 +148,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <button class="filter-tag" data-filter="comedia">😂 Comedia</button>
             </div>
 
-            <p class="results-counter">Mostrando <span id="count">5</span> películas</p>
+            <p class="results-counter">Mostrando <span id="count">6</span> películas</p>
 
             <!-- Grid de Películas -->
             <div class="movies-grid" id="movies-grid">
@@ -167,12 +167,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                     </div>
                 </div>
 
-                <!-- Avengers (Próximamente) -->
+                <!-- Avengers -->
                 <div class="movie-card-item" data-genres="accion,sci-fi,aventura">
-                    <div class="card disabled" style="opacity: 0.6; cursor: not-allowed; filter: grayscale(0.5);">
-                        <div class="fav-btn" data-id="pelicula-avengers-2019" data-title="Avengers: Endgame" data-img="https://image.tmdb.org/t/p/w500/or06vS3nBjnvK67Cc9pB6pB779d.jpg" data-url="#"><i class="fa fa-heart"></i></div>
+                    <div class="card" onclick="window.location.href='/avengers-endgame-2019'">
+                        <div class="fav-btn" data-id="pelicula-avengers-2019" data-title="Avengers: Endgame" data-img="https://image.tmdb.org/t/p/w500/or06vS3nBjnvK67Cc9pB6pB779d.jpg" data-url="/avengers-endgame-2019"><i class="fa fa-heart"></i></div>
                         <div class="card-image" style="background-image: url('https://image.tmdb.org/t/p/w500/or06vS3nBjnvK67Cc9pB6pB779d.jpg'); background-size: cover; background-position: center top; height: 300px;">
-                            <div class="overlay" style="background: rgba(0,0,0,0.4);"><span class="badge" style="background: #6c757d; color: white; position: absolute; top: 10px; right: 10px;">PROXIMAMENTE</span></div>
+                            <div class="overlay"><button class="play-btn">▶</button></div>
                         </div>
                         <div class="card-info">
                             <h3 style="font-size: 14px;">Avengers: Endgame</h3>
@@ -279,7 +279,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
                     <div style="display: flex; justify-content: space-between;">
                         <span style="color: var(--text-secondary);">Total películas</span>
-                        <span style="color: var(--accent); font-weight: bold;">5</span>
+                        <span style="color: var(--accent); font-weight: bold;">6</span>
                     </div>
                     <div style="display: flex; justify-content: space-between;">
                         <span style="color: var(--text-secondary);">Géneros</span>
