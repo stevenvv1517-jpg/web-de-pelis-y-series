@@ -4,62 +4,46 @@ export const prerender = false;
 
 const AD_BLOCK_CSS = `
 <style id="adblock-css">
-  [class*="ad-"], [class*="ad_"], [id*="ad-"], [id*="ad_"],
+  #vast-preroll-overlay,
+  #click-shield,
+  #ad-label, #ad-counter,
+  .preroll-overlay, .ad-overlay,
+  .video-ad, .preroll, .midroll,
+  [class*="ad-"], [id*="ad-"],
   [class*="pop"], [id*="pop"],
   [class*="banner"], [id*="banner"],
   [class*="interstitial"], [id*="interstitial"],
-  [class*="overlay"], [id*="overlay"],
-  [class*="modal"][style*="z-index"], [class*="popup"],
-  [style*="z-index: 9999"], [style*="z-index:9999"],
-  [style*="z-index: 99999"], [style*="z-index:99999"],
-  [style*="position: fixed"][style*="z-index"],
-  [style*="position:fixed"][style*="z-index"],
-  .ads, .ad-container, .ad-wrapper, .ad-overlay,
-  .popunder, .pop-under, .promo-overlay,
-  .video-ad, .preroll, .midroll,
-  [data-ad], [data-ads], [data-pop]
+  .overlay-ad, .modal-ad, .floating-ad
   { display: none !important; pointer-events: none !important; }
-
   body { overflow: auto !important; }
   html { overflow: auto !important; }
 </style>`;
 
-const AD_SCRIPT_PATTERNS = [
-  'popunder', 'popunder.js', 'adfly', 'shorte.st', 'bc.vc',
-  'clk.sh', 'sh.st', 'ouo.io', 'adshort', 'adf.ly',
-  'monetag', 'propeller', 'exoclick', 'juicyads', 'adsterra',
-  'doubleclick', 'googletag', 'adsbygoogle', 'adnxs',
-  'taboola', 'outbrain', 'revcontent', 'mgid',
-  'adcash', 'hilltopads', 'galaksion', 'popcash', 'popads',
-  'crystalads', 'ad-maven', 'binaryoptions', 'adskeeper',
-  'trafficjunky', 'advertising.com', 'serving-sys.com',
-  'adform', 'criteo', 'taboola', 'taboola-loader',
-  'clickunder', 'onclick', 'window.open',
-  'document.createElement.*iframe', 'appendChild.*iframe',
-  'innerHTML.*<iframe', 'document.write.*ad',
-];
+const AD_BLOCK_SCRIPT = `
+<script id="adblock-injected">
+// Block popunders and redirects
+window.open = function() { return null; };
 
-function isAdScript(content: string): boolean {
-  const lower = content.toLowerCase();
-  return AD_SCRIPT_PATTERNS.some(p => lower.includes(p));
+// Disable VAST preroll engine
+Object.defineProperty(window, '_vastStartPreroll', { get: () => null, set: () => {} });
+
+// Override PREROLL_CONFIG if it exists
+if (typeof PREROLL_CONFIG !== 'undefined') {
+  PREROLL_CONFIG.vastTags = [];
+  PREROLL_CONFIG.skipAfter = 0;
+  PREROLL_CONFIG.autoAdvance = false;
 }
 
-function removeAds(html: string): string {
-  html = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, (match) => {
-    if (isAdScript(match)) return '<!-- ad script removed -->';
-    return match;
-  });
-
-  html = html.replace(/<div[^>]*(class|id)=["'][^"']*(popunder|interstitial|preroll|midroll|video-overlay-ad|modal-ad|banner-ad|floating-ad)[^"']*["'][^>]*>[\s\S]*?<\/div>/gi, '<!-- ad div removed -->');
-
-  html = html.replace(/<iframe[^>]*(doubleclick|adnxs|advertising|adserver|ad\.php|ad\.html)[^>]*>[\s\S]*?<\/iframe>/gi, '<!-- ad iframe removed -->');
-
-  html = html.replace(/<ins[^>]*>[\s\S]*?<\/ins>/gi, '<!-- ad unit removed -->');
-
-  html = html.replace(/<a[^>]*target=["']_blank["'][^>]*onclick[^>]*>[\s\S]*?<\/a>/gi, '<!-- ad link removed -->');
-
-  return html;
-}
+// Intercept launch() to skip preroll
+const _origLaunch = window.launch;
+window.launch = function() {
+  if (typeof _showPlayerAfterAd === 'function') {
+    _showPlayerAfterAd();
+  } else if (_origLaunch) {
+    _origLaunch();
+  }
+};
+</script>`;
 
 export const GET: APIRoute = async ({ url }) => {
   const id = url.searchParams.get('id');
@@ -85,10 +69,64 @@ export const GET: APIRoute = async ({ url }) => {
 
     let html = await res.text();
 
-    html = removeAds(html);
+    // 1) Empty VAST preroll tags
+    html = html.replace(
+      /const PREROLL_CONFIG\s*=\s*\{[\s\S]*?\};/,
+      `const PREROLL_CONFIG = { vastTags: [], skipAfter: 0, muteOnStart: false, corsProxy: "", autoAdvance: false };`
+    );
 
+    // 2) Disable _vastStartPreroll initialization
+    html = html.replace(
+      /_vastStartPreroll\s*=\s*function/g,
+      `_vastStartPreroll = null; /* disabled */ /*`
+    );
+    html = html.replace(
+      /function initPrerollEngine\(\)\s*\{/g,
+      `function initPrerollEngine() { return; /* disabled */`
+    );
+
+    // 3) Remove ad-related scripts
+    html = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, (match) => {
+      const lower = match.toLowerCase();
+      if (
+        lower.includes('popunder') ||
+        lower.includes('adfly') ||
+        lower.includes('monetag') ||
+        lower.includes('propeller') ||
+        lower.includes('exoclick') ||
+        lower.includes('juicyads') ||
+        lower.includes('adsterra') ||
+        lower.includes('doubleclick') ||
+        lower.includes('googletag') ||
+        lower.includes('adsbygoogle') ||
+        lower.includes('adnxs') ||
+        lower.includes('taboola') ||
+        lower.includes('outbrain') ||
+        lower.includes('revcontent') ||
+        lower.includes('mgid') ||
+        lower.includes('adcash') ||
+        lower.includes('hilltopads') ||
+        lower.includes('popcash') ||
+        lower.includes('popads') ||
+        lower.includes('document.createElement') && lower.includes('iframe') && lower.includes('ad')
+      ) {
+        return '<!-- ad script removed -->';
+      }
+      return match;
+    });
+
+    // 4) Remove ad overlay divs and iframes
+    html = html.replace(/<div[^>]*(class|id)=["'][^"']*(popunder|interstitial|preroll-overlay|ad-overlay|floating-ad)[^"']*["'][^>]*>[\s\S]*?<\/div>/gi, '<!-- removed -->');
+    html = html.replace(/<iframe[^>]*(doubleclick|adnxs|advertising|adserver|ad\.php)[^>]*>[\s\S]*?<\/iframe>/gi, '<!-- removed -->');
+    html = html.replace(/<ins[^>]*>[\s\S]*?<\/ins>/gi, '<!-- removed -->');
+
+    // 5) Inject ad-block CSS in <head>
     html = html.replace(/<head([^>]*)>/i, `<head$1>${AD_BLOCK_CSS}`);
 
+    // 6) Inject ad-block script at end of body (before closing </body>)
+    html = html.replace(/<\/body>/i, `${AD_BLOCK_SCRIPT}</body>`);
+
+    // 7) Fix relative URLs
     html = `<base href="https://unlimplay.com/">` + html;
 
     return new Response(html, {
